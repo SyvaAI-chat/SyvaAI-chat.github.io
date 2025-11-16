@@ -15,7 +15,7 @@ export async function login(email, password) {
     console.log("Calling Firebase signInWithEmailAndPassword");
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     console.log("User logged in:", userCredential.user);
-    window.location.href = "/chat/index.html";
+    window.location.href = "index.html";
   } catch (error) {
     console.error("Error logging in:", error.message);
     alert("Login failed: " + error.message);
@@ -27,7 +27,7 @@ export async function signUp(email, password) {
     console.log("Calling Firebase createUserWithEmailAndPassword");
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("User signed up:", userCredential.user);
-    window.location.href = "/chat/welcome.html";
+    window.location.href = "welcome.html";
   } catch (error) {
     console.error("Error signing up:", error.message);
     alert("Sign-up failed: " + error.message);
@@ -39,7 +39,7 @@ export async function loginWithGoogle() {
     console.log("Calling Firebase signInWithPopup with Google provider");
     const userCredential = await signInWithPopup(auth, googleProvider);
     console.log("Google user logged in:", userCredential.user);
-    window.location.href = "/chat/index.html";
+    window.location.href = "index.html";
   } catch (error) {
     console.error("Error with Google sign-in:", error.code, error.message);
     if (error.code === "auth/popup-blocked") {
