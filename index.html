@@ -495,8 +495,8 @@
     .userbutton {
       width: 100%;
       padding: 10px;
-      background: #e0e0e0;
-      border: none;
+      background: #0d0d0d;
+      border: 1px white;
       color: white;
       font-size: 16px;
       border-radius: 50%;
@@ -521,8 +521,8 @@
 
     .menubut {
       padding: 10px;
-      background: #e0e0e0;
-      border: none;
+      background: #0d0d0d;
+      border: 1px #FFFF;
       color: white;
       font-size: 16px;
       border-radius: 50%;
@@ -1894,8 +1894,22 @@
 
     <!-- Header -->
     <div class="chat-toolbar">
+      <div class="dropdown">
+        <button onclick="myFunction()" class="userbutton"><img src="/logos/logo/user.png" height="20px"
+            width="20px"></button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#" onclick="openIframe('settings.htm')">Settings</a>
+          <a href="https://syvaai.com/donate.html" style="color:rgb(3, 104, 3);">Donate</a>
+          <a href="#" onclick="openIframe('disclamer.html')"><u>Disclamer</u></a>
+          <a href="#" onclick="openIframe('license.html')"><u>License</u></a>
+          <a href="#" onclick="openIframe('report.html')"><u>Report content</u></a>
+        </div>
+      </div>
       <button onclick="openNav()" class="menubut"><img src="/logos/logo/menu.png" height="20px" width="20px"></button>
+      <button onclick="startNewChat()" id="toggleChatsBtn" class="menubut"><img src="/logos/logo/newchat.png" height="20px"
+          width="20px"></button>
     </div>
+    <div>
     <div>
       <h1 class="text-2xl font-semibold">Hello there!</h1>
       <p class="text-gray-400 mt-1">How can I help you today?</p>
@@ -1934,26 +1948,6 @@
   <!-- Pop-out sidenav for Chats -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div id="chatsText" style="padding: 12px; text-align: left;">
-      <small>
-        <p style="color:gray;" class="text-left">User options</p>
-      </small>
-    </div>
-    <div class="sidebar-toolbar">
-      <div class="dropdown">
-        <button onclick="myFunction()" class="userbutton"><img src="/logos/logo/user.png" height="20px"
-            width="20px"></button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#" onclick="openIframe('settings.htm')">Settings</a>
-          <a href="https://syvaai.com/donate.html" style="color:rgb(3, 104, 3);">Donate</a>
-          <a href="#" onclick="openIframe('disclamer.html')"><u>Disclamer</u></a>
-          <a href="#" onclick="openIframe('license.html')"><u>License</u></a>
-          <a href="#" onclick="openIframe('report.html')"><u>Report content</u></a>
-        </div>
-      </div>
-      <button onclick="startNewChat()" id="toggleChatsBtn" class="menubut"><img src="/logos/logo/newchat.png"
-          height="20px" width="20px"></button>
-    </div>
     <div id="chatsText" style="padding: 12px; text-align: left;">
       <div class="login-containertwo">
         <small>
