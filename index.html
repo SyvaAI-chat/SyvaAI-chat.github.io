@@ -1793,18 +1793,7 @@ width: 90%
 
     <!-- Header -->
           <div class="chat-toolbar">
-        <div class="dropdown">
-          <button onclick="myFunction()" class="userbutton"><img src="/logos/logo/user.png" height="20px" width="20px"></button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="#" onclick="openIframe('settings.htm')">Settings</a>
-            <a href="https://syvaai.com/donate.html" style="color:rgb(3, 104, 3);">Donate</a>
-            <a href="#" onclick="openIframe('disclamer.html')"><u>Disclamer</u></a>
-            <a href="#" onclick="openIframe('license.html')"><u>License</u></a> 
-            <a href="#" onclick="openIframe('report.html')"><u>Report content</u></a>
-          </div>
-        </div>
         <button onclick="openNav()" class="menubut"><img src="/logos/logo/menu.png" height="20px" width="20px"></button>
-        <button onclick="startNewChat()" id="toggleChatsBtn" class="menubut"><img src="/logos/logo/newchat.png" height="20px" width="20px"></button>
       </div>
     <div>
       <h1 class="text-2xl font-semibold">Hello there!</h1>
@@ -1813,7 +1802,7 @@ width: 90%
     <div id="chat" style="height: 9999px; overflow-y: auto; padding: 20px;"></div>
 
     <!-- Suggested messages -->
-    <!-- <div class="space-y-3">
+    <div class="space-y-3">
       <button class="w-full text-left bg-[#1a1a1a] hover:bg-[#262626] transition rounded-xl px-4 py-3 text-sm">
         <span class="text-white font-medium">What's the weather</span> 
         <span class="text-gray-400">in San Francisco?</span>
@@ -1823,7 +1812,13 @@ width: 90%
         <span class="text-white font-medium">Explain React hooks</span> 
         <span class="text-gray-400">like useState and useEffect</span>
       </button>
-    </div> -->
+    </div>
+
+    <button class="w-full text-left bg-[#1a1a1a] hover:bg-[#262626] transition rounded-xl px-4 py-3 text-sm">
+        <span class="text-white font-medium">What the latest news</span> 
+        <span class="text-gray-400">around the world today?</span>
+      </button>
+    </div>
 
 
 
@@ -1842,6 +1837,20 @@ width: 90%
 <!-- Pop-out sidenav for Chats -->
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <div class="chat-toolbar">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="userbutton"><img src="/logos/logo/user.png" height="20px" width="20px"></button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#" onclick="openIframe('settings.htm')">Settings</a>
+            <a href="https://syvaai.com/donate.html" style="color:rgb(3, 104, 3);">Donate</a>
+            <a href="#" onclick="openIframe('disclamer.html')"><u>Disclamer</u></a>
+            <a href="#" onclick="openIframe('license.html')"><u>License</u></a> 
+            <a href="#" onclick="openIframe('report.html')"><u>Report content</u></a>
+          </div>
+        </div>
+        <button onclick="openNav()" class="menubut"><img src="/logos/logo/menu.png" height="20px" width="20px"></button>
+        <button onclick="startNewChat()" id="toggleChatsBtn" class="menubut"><img src="/logos/logo/newchat.png" height="20px" width="20px"></button>
+      </div>
   <div id="chatsText" style="padding: 12px; text-align: left;">
     <div class="login-containertwo">
       <small><p style="color:gray;" class="text-left">Chats</p></small>
