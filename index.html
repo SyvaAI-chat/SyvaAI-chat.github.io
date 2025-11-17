@@ -1768,6 +1768,12 @@ h2 {
   color: white;
   cursor: pointer;
 }
+
+.bottom-div {
+position: absolute;
+bottom: 0;
+width: 90%
+}
     </style>
 
 
@@ -1792,6 +1798,9 @@ h2 {
           <div id="myDropdown" class="dropdown-content">
             <a href="#" onclick="openIframe('settings.htm')">Settings</a>
             <a href="https://syvaai.com/donate.html" style="color:rgb(3, 104, 3);">Donate</a>
+            <a href="#" onclick="openIframe('disclamer.html')"><u>Disclamer</u></a>
+            <a href="#" onclick="openIframe('license.html')"><u>License</u></a> 
+            <a href="#" onclick="openIframe('report.html')"><u>Report content</u></a>
           </div>
         </div>
         <button onclick="openNav()" class="menubut"><img src="/logos/logo/menu.png" height="20px" width="20px"></button>
@@ -1816,8 +1825,11 @@ h2 {
       </button>
     </div> -->
 
-    <!-- Message input -->
-<div class="relative">
+
+
+  </div>
+
+<div class="bottom-div">
   <textarea
     id="input-text"
     placeholder="Send a message..."
@@ -1826,11 +1838,6 @@ h2 {
     rows="1"
   ></textarea>
 </div>
-<a href="#" onclick="openIframe('disclamer.html')"><u>Disclamer</u> • </a> <a href="#" onclick="openIframe('license.html')"><u>License</u> • </a> <a href="#" onclick="openIframe('report.html')"><u>Report content</u></a>
-
-
-
-  </div>
 
 <!-- Pop-out sidenav for Chats -->
 <div id="mySidenav" class="sidenav">
