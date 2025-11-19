@@ -1878,139 +1878,95 @@
       width: 95%;
     }
 
-    /* From Uiverse.io by Pradeepsaranbishnoi */ 
-.🤚 {
-  --skin-color: #FFFFFF;
-  --tap-speed: 0.6s;
-  --tap-stagger: 0.1s;
+/* From Uiverse.io by david-mohseni */ 
+.loader {
   position: relative;
-  width: 40px;
-  height: 30px;
-  margin-left: 40px;
-}
-.🤚:before {
-  content: '';
-  display: block;
-  width: 180%;
-  height: 75%;
-  position: absolute;
-  top: 70%;
-  right: 20%;
-  background-color: black;
-  border-radius: 20px 5px;
-  filter: blur(5px);
-  opacity: 0.3;
-}
-.🌴 {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: var(--skin-color);
-  border-radius: 5px 20px;
-}
-.👍 {
-  position: absolute;
-  width: 120%;
-  height: 19px;
-  background-color: var(--skin-color);
-  bottom: -18%;
-  right: 1%;
-  transform-origin: calc(100% - 10px) 10px;
-  transform: rotate(-20deg);
-  border-radius: 15px 10px 10px 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
-}
-.👍:after {
-  width: 20%;
-  height: 60%;
-  content: '';
-  background-color: rgba(255, 255, 255, 0.3);
-  position: absolute;
-  bottom: -8%;
-  left: 2.5px;
-  border-radius: 60% 10% 10% 30%;
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
-}
-.👉 {
-  position: absolute;
-  width: 80%;
-  height: 17.5px;
-  background-color: var(--skin-color);
-  bottom: 32%;
-  right: 64%;
-  transform-origin: 100% 10px;
-  animation-duration: calc(var(--tap-speed) * 2);
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  transform: rotate(10deg);
-}
-.👉:before {
-  content: '';
-  position: absolute;
-  width: 140%;
-  height: 15px;
-  background-color: var(--skin-color);
-  bottom: 8%;
-  right: 65%;
-  transform-origin: calc(100% - 10px) 10px;
-  transform: rotate(-60deg);
+  width: 54px;
+  height: 54px;
   border-radius: 10px;
 }
-.👉:nth-child(1) {
-  animation-delay: 0;
-  filter: brightness(70%);
-  animation-name: tap-upper-1;
+
+.loader div {
+  width: 8%;
+  height: 24%;
+  background: rgb(128, 128, 128);
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  opacity: 0;
+  border-radius: 50px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  animation: fade458 1s linear infinite;
 }
-.👉:nth-child(2) {
-  animation-delay: var(--tap-stagger);
-  filter: brightness(80%);
-  animation-name: tap-upper-2;
-}
-.👉:nth-child(3) {
-  animation-delay: calc(var(--tap-stagger) * 2);
-  filter: brightness(90%);
-  animation-name: tap-upper-3;
-}
-.👉:nth-child(4) {
-  animation-delay: calc(var(--tap-stagger) * 3);
-  filter: brightness(100%);
-  animation-name: tap-upper-4;
-}
-@keyframes tap-upper-1 {
-  0%, 50%, 100% {
-    transform: rotate(10deg) scale(0.4);
+
+@keyframes fade458 {
+  from {
+    opacity: 1;
   }
-  40% {
-    transform: rotate(50deg) scale(0.4);
+
+  to {
+    opacity: 0.25;
   }
 }
-@keyframes tap-upper-2 {
-  0%, 50%, 100% {
-    transform: rotate(10deg) scale(0.6);
-  }
-  40% {
-    transform: rotate(50deg) scale(0.6);
-  }
+
+.loader .bar1 {
+  transform: rotate(0deg) translate(0, -130%);
+  animation-delay: 0s;
 }
-@keyframes tap-upper-3 {
-  0%, 50%, 100% {
-    transform: rotate(10deg) scale(0.8);
-  }
-  40% {
-    transform: rotate(50deg) scale(0.8);
-  }
+
+.loader .bar2 {
+  transform: rotate(30deg) translate(0, -130%);
+  animation-delay: -1.1s;
 }
-@keyframes tap-upper-4 {
-  0%, 50%, 100% {
-    transform: rotate(10deg) scale(1);
-  }
-  40% {
-    transform: rotate(50deg) scale(1);
-  }
+
+.loader .bar3 {
+  transform: rotate(60deg) translate(0, -130%);
+  animation-delay: -1s;
+}
+
+.loader .bar4 {
+  transform: rotate(90deg) translate(0, -130%);
+  animation-delay: -0.9s;
+}
+
+.loader .bar5 {
+  transform: rotate(120deg) translate(0, -130%);
+  animation-delay: -0.8s;
+}
+
+.loader .bar6 {
+  transform: rotate(150deg) translate(0, -130%);
+  animation-delay: -0.7s;
+}
+
+.loader .bar7 {
+  transform: rotate(180deg) translate(0, -130%);
+  animation-delay: -0.6s;
+}
+
+.loader .bar8 {
+  transform: rotate(210deg) translate(0, -130%);
+  animation-delay: -0.5s;
+}
+
+.loader .bar9 {
+  transform: rotate(240deg) translate(0, -130%);
+  animation-delay: -0.4s;
+}
+
+.loader .bar10 {
+  transform: rotate(270deg) translate(0, -130%);
+  animation-delay: -0.3s;
+}
+
+.loader .bar11 {
+  transform: rotate(300deg) translate(0, -130%);
+  animation-delay: -0.2s;
+}
+
+.loader .bar12 {
+  transform: rotate(330deg) translate(0, -130%);
+  animation-delay: -0.1s;
 }
 
   </style>
@@ -2303,14 +2259,20 @@
       // Create AI message with main loader
       const loaderDiv = document.createElement('div');
       loaderDiv.classList.add('message', 'message-ai');
-      loaderDiv.innerHTML = `<!-- From Uiverse.io by Pradeepsaranbishnoi --> 
-<div class="🤚">
-	<div class="👉"></div>
-	<div class="👉"></div>
-	<div class="👉"></div>
-	<div class="👉"></div>
-	<div class="🌴"></div>		
-	<div class="👍"></div>
+      loaderDiv.innerHTML = `<!-- From Uiverse.io by david-mohseni --> 
+<div class="loader">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
+    <div class="bar7"></div>
+    <div class="bar8"></div>
+    <div class="bar9"></div>
+    <div class="bar10"></div>
+    <div class="bar11"></div>
+    <div class="bar12"></div>
 </div>`;
       chat.appendChild(loaderDiv);
       chat.scrollTop = chat.scrollHeight;
