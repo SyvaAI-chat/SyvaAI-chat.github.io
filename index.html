@@ -1986,8 +1986,9 @@
   <input 
     type="text" 
     id="chatSearch" 
-    placeholder="Search chats..." 
-    class="w-full bg-[#1a1a1a] text-white placeholder-gray-500 rounded-xl py-2 px-3 focus:outline-none border border-gray-600 focus:ring-2 focus:ring-blue-500"
+    placeholder="Search chats..."
+    style="background-color: #0d0d0d !important;" rows="1" 
+    class="w-full bg-[#0d0d0d] text-white placeholder-gray-500 rounded-xl py-3 px-4 pr-12 focus:outline-none border border-gray-600 focus:ring-2 focus:ring-blue-500 resize-none max-h-80 overflow-y-auto leading-relaxed"
   >
 </div>
     <div id="chatsText" style="padding: 12px; text-align: left;">
@@ -2550,27 +2551,34 @@ chatSearchInput.addEventListener('input', () => {
         const title = chat.title || 'New Chat';
         const isActive = chatId === activeChatId;
 
-        html += `
-      <div style="
-        padding: 10px;
-        margin: 8px;
-        background: ${isActive ? 'rgba(100,100,255,0.2)' : 'rgba(255,255,255,0.1)'};
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      ">
-        <div onclick="loadChatFromList('${chatId}')" style="flex: 1; cursor: pointer;">
-          <small>${title}</small>
-        </div>
-        <div style="display: flex; gap: 6px;">
-        <button onclick="renameChat('${chatId}', event)" 
-          style="background: none; border: none; color: #66ccff; cursor: pointer; padding: 4px 8px; font-size: 14px;"><img src="/logos/logo/pencil-svgrepo-com.png" height="20px" width="20px"></button>
-        <button onclick="deleteChat('${chatId}', event)" 
-          style="background: none; border: none; color: #ff4444; cursor: pointer; padding: 4px 8px; font-size: 18px;"><img src="/logos/logo/trash-alt-svgrepo-com.png" height="20px" width="20px"></button>
-        </div>
-      </div>
-    `;
+
+
+html += `
+  <div data-chat-id="${chatId}" style="
+    padding: 10px;
+    margin: 8px;
+    background: ${isActive ? 'rgba(100,100,255,0.2)' : 'rgba(255,255,255,0.1)'};
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  ">
+    <div onclick="loadChatFromList('${chatId}')" style="flex: 1; cursor: pointer;">
+      <small>${title}</small>
+    </div>
+    <div style="display: flex; gap: 6px;">
+      <button onclick="renameChat('${chatId}', event)" 
+        style="background: none; border: none; color: #66ccff; cursor: pointer; padding: 4px 8px; font-size: 14px;">
+        <img src="/logos/logo/pencil-svgrepo-com.png" height="20px" width="20px">
+      </button>
+      <button onclick="deleteChat('${chatId}', event)" 
+        style="background: none; border: none; color: #ff4444; cursor: pointer; padding: 4px 8px; font-size: 18px;">
+        <img src="/logos/logo/trash-alt-svgrepo-com.png" height="20px" width="20px">
+      </button>
+    </div>
+  </div>
+`;
+
       });
 
       container.innerHTML = html;
