@@ -1983,13 +1983,13 @@
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div style="padding: 12px;">
-  <input 
-    type="text" 
-    id="chatSearch" 
-    placeholder="Search chats..."
-    style="background-color: #0d0d0d !important;" rows="1" 
-    class="w-full bg-[#0d0d0d] text-white placeholder-gray-500 rounded-xl py-3 px-4 pr-12 focus:outline-none border border-gray-600 focus:ring-2 focus:ring-blue-500 resize-none max-h-80 overflow-y-auto leading-relaxed"
-  >
+<input 
+  type="text" 
+  id="chatSearch" 
+  placeholder="Search chats..."
+  style="background-color: #0d0d0d !important;" 
+  class="w-full bg-[#0d0d0d] text-white placeholder-gray-400 rounded-lg py-2.5 px-4 pl-10 focus:outline-none border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200"
+>
 </div>
     <div id="chatsText" style="padding: 12px; text-align: left;">
       <div class="login-containertwo">
@@ -2371,17 +2371,30 @@
 // Filter chats based on search input
 const chatSearchInput = document.getElementById('chatSearch');
 
-chatSearchInput.addEventListener('input', () => {
-  const query = chatSearchInput.value.toLowerCase();
+if (chatSearchInput) {
+  chatSearchInput.addEventListener('input', () => {
+    const query = chatSearchInput.value.toLowerCase().trim();
 
-  Object.keys(chatSessions).forEach(chatId => {
-    const chatDiv = document.querySelector(`[data-chat-id="${chatId}"]`);
-    if (!chatDiv) return;
-
-    const title = chatSessions[chatId].title.toLowerCase();
-    chatDiv.style.display = title.includes(query) ? 'flex' : 'none';
+    // Get all chat divs that exist right now
+    const chatDivs = document.querySelectorAll('[data-chat-id]');
+    
+    chatDivs.forEach(chatDiv => {
+      const chatId = chatDiv.getAttribute('data-chat-id');
+      const chat = chatSessions[chatId];
+      
+      if (!chat) return;
+      
+      const title = chat.title.toLowerCase();
+      
+      // Show if query is empty OR title matches
+      if (query === '' || title.includes(query)) {
+        chatDiv.style.display = 'flex';
+      } else {
+        chatDiv.style.display = 'none';
+      }
+    });
   });
-});
+}
 
   </script>
   <!-- Popup reminder visibility persistence -->
