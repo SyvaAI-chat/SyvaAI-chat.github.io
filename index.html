@@ -2032,6 +2032,27 @@
 
 
   <script>
+    const textarea = document.getElementById('input-text');
+
+textarea.addEventListener('input', function() {
+  // Reset height to auto to get the correct scrollHeight
+  this.style.height = 'auto';
+  
+  // Set the height to match the content (up to max-h-96 which is ~24rem or 384px)
+  this.style.height = Math.min(this.scrollHeight, 384) + 'px';
+});
+
+// Optional: Reset height when content is cleared
+textarea.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    // Reset after sending message (adjust based on your send logic)
+    setTimeout(() => {
+      this.style.height = 'auto';
+    }, 10);
+  }
+});
+  </script>
+  <script>
     if (localStorage.getItem(DARK_MODE_KEY) === 'true') {
       enableDarkMode();
     }
