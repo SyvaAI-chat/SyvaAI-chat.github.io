@@ -1991,7 +1991,7 @@
 
   </div>
 
-<div class="bottom-div">
+<!-- <div class="bottom-div">
   <div style="max-width: 900px; margin: 0 auto; position: relative; padding: 0 8px;">
     <textarea 
       id="input-text" 
@@ -2001,14 +2001,61 @@
         background-color: #0d0d0d !important; 
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         font-size: 15px;
-        width: 100%; /* Ensure it spans the container's width */
-        height: 80vh; /* Set height to 80% of the viewport height */
-        max-height: 80vh; /* Override the existing max-h-96 if needed */
+        width: 100%
       " 
       class="w-full text-white placeholder-gray-500 rounded-xl py-3.5 px-5 focus:outline-none border border-gray-500 focus:border-gray-500 resize-none max-h-96 overflow-y-auto leading-relaxed transition-all duration-200"
     ></textarea>
   </div>
-</div>
+</div> -->
+
+<form
+  class="flex bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
+>
+  <div aria-disabled="true" class="w-10 grid place-content-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </svg>
+  </div>
+  <input
+    id="input-text"
+    type="text"
+    spellcheck="false"
+    name="text"
+    class="bg-transparent py-1.5 outline-none placeholder:text-zinc-400 w-20 focus:w-48 transition-all"
+    placeholder="Say somthing..."
+  />
+  <button
+    class="w-10 grid place-content-center"
+    aria-label="Clear input button"
+    type="reset"
+  >
+    <svg
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      viewBox="0 0 24 24"
+      height="16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M18 6 6 18"></path>
+      <path d="m6 6 12 12"></path>
+    </svg>
+  </button>
+</form>
 
   <!-- Pop-out sidenav for Chats -->
   <div id="mySidenav" class="sidenav">
