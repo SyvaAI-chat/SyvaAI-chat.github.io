@@ -1836,40 +1836,84 @@
     }
 
     /* --- Sidenav animation for Chats --- */
-    .sidenav {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 2000;
-      top: 0;
-      left: 0;
-      background-color: #0d0d0d;
-      overflow-x: hidden;
-      transition: 0.4s;
-      border-right: 1px solid #333;
-    }
+.sidenav {
+  height: 100%;
+  width: 250px;  /* Default width for desktop */
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background-color: #0d0d0d;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 0;
+  border-right: 1px solid #333;
+}
 
-    .sidenav a {
-      padding: 8px 8px 8px 32px;
-      text-decoration: none;
-      font-size: 18px;
-      color: #ccc;
-      display: block;
-      transition: 0.3s;
-    }
+/* Hide on mobile by default */
+@media (max-width: 768px) {
+  .sidenav {
+    width: 0;  /* Collapsed on mobile */
+  }
+  
+  .sidenav.open {
+    width: 250px;  /* Opens when toggled on mobile */
+  }
+}
 
-    .sidenav a:hover {
-      color: #fff;
-    }
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #ccc;
+  display: block;
+  transition: 0.3s;
+}
 
-    .sidenav .closebtn {
-      position: absolute;
-      top: 0;
-      right: 20px;
-      font-size: 36px;
-      color: white;
-      cursor: pointer;
-    }
+.sidenav a:hover {
+  color: #fff;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+  display: none;  /* Hide close button on desktop */
+}
+
+@media (max-width: 768px) {
+  .sidenav .closebtn {
+    display: block;  /* Show close button on mobile */
+  }
+}
+
+/* Custom scrollbar for sidenav */
+.sidenav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidenav::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+.sidenav::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.sidenav::-webkit-scrollbar-thumb:hover {
+  background: #bebebe;
+}
+
+/* Firefox scrollbar styling */
+.sidenav {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff #1a1a1a;
+}
 
     .bottom-div {
       position: absolute;
