@@ -1915,7 +1915,7 @@
     }
 
     .sidenav::-webkit-scrollbar-track {
-      background: #1a1a1a;
+      background: #0d0d0d;
       border-radius: 10px;
     }
 
@@ -2031,7 +2031,6 @@
 
 
 
-    <p>SyväAI</p>
   <div class="w-screen bg-[#0d0d0d] px-4 sm:px-6 md:px-8 lg:px-10 py-5 rounded-[3rem] space-y-12">
 
     <!-- Header -->
@@ -2195,12 +2194,19 @@
     </script>
 
     <script>
-      const textarea = document.getElementById('input-text');
+const textarea = document.getElementById('input-text');
 
-      textarea.addEventListener('input', () => {
-        textarea.style.height = 'auto';                // reset height
-        textarea.style.height = textarea.scrollHeight + 'px'; // grow or shrink
-      });
+textarea.addEventListener('input', () => {
+  textarea.style.height = 'auto';                // reset height
+  textarea.style.height = textarea.scrollHeight + 'px'; // grow or shrink
+});
+
+// ✅ Add this: Reset height when cleared
+textarea.addEventListener('change', () => {
+  if (textarea.value === '') {
+    textarea.style.height = 'auto';
+  }
+});
     </script>
 
 
@@ -2316,6 +2322,8 @@
           }
         });
       }
+
+      
 
       async function sendMessage(message) {
         appendMessage("User", message);
@@ -2530,8 +2538,13 @@
         if (e.key === 'Enter' && inputText.value.trim()) {
           sendMessage(inputText.value.trim());
           inputText.value = ""; // clear input after sending
+          
+          // ✅ Reset textarea height after sending
+          inputText.style.height = 'auto';
         }
       });
+
+      
 
       // Reuse your existing sendMessage() and appendMessage() functions
     </script>
