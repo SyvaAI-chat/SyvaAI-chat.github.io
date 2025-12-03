@@ -135,7 +135,6 @@
 
 
   <style>
-
     /* Main content area - shift right on desktop to make room for sidebar */
     .w-screen {
       margin-left: 0;
@@ -144,9 +143,11 @@
 
     @media (min-width: 769px) {
       .w-screen {
-        margin-left: 250px;  /* Make room for sidebar on desktop */
+        margin-left: 250px;
+        /* Make room for sidebar on desktop */
       }
     }
+
     /* General styles */
     .chat-container {
       width: 100%;
@@ -181,6 +182,7 @@
       flex-wrap: wrap;
       gap: 10px;
     }
+
     .sidebar-toolbar {
       display: flex;
       justify-content: flex-start;
@@ -1848,100 +1850,107 @@
     }
 
     /* --- Sidenav animation for Chats --- */
-.sidenav {
-  height: 100%;
-  width: 250px;  /* Default width for desktop */
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  background-color: #0d0d0d;
-  overflow-x: hidden;
-  transition: 0.4s;
-  padding-top: 0;
-  border-right: 1px solid #333;
-}
+    .sidenav {
+      height: 100%;
+      width: 250px;
+      /* Default width for desktop */
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      background-color: #0d0d0d;
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 0;
+      border-right: 1px solid #333;
+    }
 
-/* Hide on mobile by default */
-@media (max-width: 768px) {
-  .sidenav {
-    width: 0;  /* Collapsed on mobile */
-  }
-  
-  .sidenav.open {
-    width: 250px;  /* Opens when toggled on mobile */
-  }
-}
+    /* Hide on mobile by default */
+    @media (max-width: 768px) {
+      .sidenav {
+        width: 0;
+        /* Collapsed on mobile */
+      }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #ccc;
-  display: block;
-  transition: 0.3s;
-}
+      .sidenav.open {
+        width: 250px;
+        /* Opens when toggled on mobile */
+      }
+    }
 
-.sidenav a:hover {
-  color: #fff;
-}
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ccc;
+      display: block;
+      transition: 0.3s;
+    }
 
-.sidenav .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 36px;
-  color: white;
-  cursor: pointer;
-  display: none;  /* Hide close button on desktop */
-}
+    .sidenav a:hover {
+      color: #fff;
+    }
 
-@media (max-width: 768px) {
-  .sidenav .closebtn {
-    display: block;  /* Show close button on mobile */
-  }
-}
+    .sidenav .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+      display: none;
+      /* Hide close button on desktop */
+    }
 
-/* Custom scrollbar for sidenav */
-.sidenav::-webkit-scrollbar {
-  width: 8px;
-}
+    @media (max-width: 768px) {
+      .sidenav .closebtn {
+        display: block;
+        /* Show close button on mobile */
+      }
+    }
 
-.sidenav::-webkit-scrollbar-track {
-  background: #1a1a1a;
-  border-radius: 10px;
-}
+    /* Custom scrollbar for sidenav */
+    .sidenav::-webkit-scrollbar {
+      width: 8px;
+    }
 
-.sidenav::-webkit-scrollbar-thumb {
-  background: #ffffff;
-  border-radius: 10px;
-}
+    .sidenav::-webkit-scrollbar-track {
+      background: #1a1a1a;
+      border-radius: 10px;
+    }
 
-.sidenav::-webkit-scrollbar-thumb:hover {
-  background: #bebebe;
-}
+    .sidenav::-webkit-scrollbar-thumb {
+      background: #ffffff;
+      border-radius: 10px;
+    }
 
-/* Firefox scrollbar styling */
-.sidenav {
-  scrollbar-width: thin;
-  scrollbar-color: #ffffff #1a1a1a;
-}
+    .sidenav::-webkit-scrollbar-thumb:hover {
+      background: #bebebe;
+    }
 
-.bottom-div {
-  position: fixed;
-  bottom: 30px;
-  left: 0;
-  right: 0;
-  padding: 0 2.5%;  /* Use padding instead of width */
-  transition: all 0.4s;
-}
+    /* Firefox scrollbar styling */
+    .sidenav {
+      scrollbar-width: thin;
+      scrollbar-color: #ffffff #1a1a1a;
+    }
 
-@media (min-width: 769px) {
-  .bottom-div {
-    left: 250px;  /* Account for sidebar */
-    padding: 0 2.5%;
-  }
-}
+    .bottom-div {
+      position: fixed;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 2.5%;
+      /* Use padding instead of width */
+      transition: all 0.4s;
+    }
+
+    @media (min-width: 769px) {
+      .bottom-div {
+        left: 250px;
+        /* Account for sidebar */
+        padding: 0 2.5%;
+      }
+    }
 
     .top-div {
       position: fixed;
@@ -1949,58 +1958,65 @@
       left: 50px;
       right: 50px;
       z-index: 1000;
-      background-color: #0d0d0d; /* Match your background */
+      background-color: #0d0d0d;
+      /* Match your background */
     }
 
-/* From Uiverse.io by Fernando-sv */ 
-.loader {
-  border: 4px solid #FFF;
-  border-left-color: transparent;
-  border-radius: 50%;
-}
+    /* From Uiverse.io by Fernando-sv */
+    .loader {
+      border: 4px solid #FFF;
+      border-left-color: transparent;
+      border-radius: 50%;
+    }
 
-.loader {
-  border: 4px solid #FFF;
-  border-left-color: transparent;
-  width: 30px;
-  height: 30px;
-}
+    .loader {
+      border: 4px solid #FFF;
+      border-left-color: transparent;
+      width: 30px;
+      height: 30px;
+    }
 
-.loader {
-  border: 4px solid #FFF;
-  border-left-color: transparent;
-  width: 36px;
-  height: 36px;
-  animation: spin89345 1s linear infinite;
-}
+    .loader {
+      border: 4px solid #FFF;
+      border-left-color: transparent;
+      width: 36px;
+      height: 36px;
+      animation: spin89345 1s linear infinite;
+    }
 
-@keyframes spin89345 {
-  0% {
-    transform: rotate(0deg);
-  }
+    @keyframes spin89345 {
+      0% {
+        transform: rotate(0deg);
+      }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
-  #input-text::-webkit-scrollbar {
-    width: 8px;
-  }
+    #input-text::-webkit-scrollbar {
+      width: 8px;
+    }
 
-  #input-text::-webkit-scrollbar-track {
-    background: #1a1a1a;
-    border-radius: 10px;
-  }
+    #input-text::-webkit-scrollbar-track {
+      background: #1a1a1a;
+      border-radius: 10px;
+    }
 
-  #input-text::-webkit-scrollbar-thumb {
-    background: #ffffff;
-    border-radius: 10px;
-  }
+    #input-text::-webkit-scrollbar-thumb {
+      background: #ffffff;
+      border-radius: 10px;
+    }
 
-  #input-text::-webkit-scrollbar-thumb:hover {
-    background: #bebebe;
-  }
+    #input-text::-webkit-scrollbar-thumb:hover {
+      background: #bebebe;
+    }
+
+    @media (min-width: 769px) {
+      #sidebarToggle {
+        display: none !important;
+      }
+    }
   </style>
 
 
@@ -2019,33 +2035,37 @@
   <div class="w-screen bg-[#0d0d0d] px-4 sm:px-6 md:px-8 lg:px-10 py-5 rounded-[3rem] space-y-12">
 
     <!-- Header -->
-   <div class="top-div">
-    <div class="chat-toolbar">
-      <div class="dropdown">
-        <button onclick="myFunction()" class="userbutton"><img src="/logos/logo/user.png" height="20px"
-            width="20px"></button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#" onclick="openIframe('settings.htm')">Settings</a>
-          <a href="https://syvaai.com/donate.html" style="color:rgb(3, 104, 3);">Donate</a>
-          <a href="#" onclick="openIframe('disclamer.html')">Disclamer</a>
-          <a href="#" onclick="openIframe('license.html')">License</a>
-          <a href="#" onclick="openIframe('report.html')">Report content</a>
+    <div class="top-div">
+      <div class="chat-toolbar">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="userbutton">
+            <img src="/logos/logo/user.png" height="20px" width="20px">
+          </button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#" onclick="openIframe('settings.htm')">Settings</a>
+            <a href="https://syvaai.com/donate.html" style="color:rgb(3, 104, 3);">Donate</a>
+            <a href="#" onclick="openIframe('disclamer.html')">Disclamer</a>
+            <a href="#" onclick="openIframe('license.html')">License</a>
+            <a href="#" onclick="openIframe('report.html')">Report content</a>
+          </div>
         </div>
+        <button id="sidebarToggle" onclick="openNav()" class="menubut">
+          <img src="/logos/logo/search-svgrepo-com.png" height="20px" width="20px">
+        </button>
+        <button onclick="startNewChat()" id="toggleChatsBtn" class="menubut">
+          <img src="/logos/logo/newchat.png" height="20px" width="20px">
+        </button>
       </div>
-      <button onclick="openNav()" class="menubut"><img src="/logos/logo/search-svgrepo-com.png" height="20px" width="20px"></button>
-      <button onclick="startNewChat()" id="toggleChatsBtn" class="menubut"><img src="/logos/logo/newchat.png" height="20px"
-          width="20px"></button>
-    </div>
     </div>
     <div>
-    <!-- <div>
+      <!-- <div>
       <h1 class="text-2xl font-semibold">Hello there!</h1>
       <p class="text-gray-400 mt-1">How can I help you today?</p>
     </div> -->
-    <div id="chat" style="height: 80%; overflow-y: auto; padding: 20px;"></div>
+      <div id="chat" style="height: 80%; overflow-y: auto; padding: 20px;"></div>
 
-    <!-- Suggested messages -->
-    <!-- <div class="space-y-3">
+      <!-- Suggested messages -->
+      <!-- <div class="space-y-3">
       <button class="w-full text-left bg-[#1a1a1a] hover:bg-[#262626] transition rounded-xl px-4 py-3 text-sm">
         <span class="text-white font-medium">What's the weather</span> 
         <span class="text-gray-400">in San Francisco?</span>
@@ -2065,308 +2085,302 @@
 
 
 
-  </div>
+    </div>
 
-<div class="bottom-div">
-  <div style="max-width: 100%; margin: 0 auto; position: relative; padding: 0 8px;">
-    <textarea 
-      id="input-text" 
-      placeholder="Message SyväAI..."
-      rows="1"
-      style="
+    <div class="bottom-div">
+      <div style="max-width: 100%; margin: 0 auto; position: relative; padding: 0 8px;">
+        <textarea id="input-text" placeholder="Message SyväAI..." rows="1" style="
         background-color: #0d0d0d !important; 
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         font-size: 15px;
         width: 100%
-      " 
-      class="w-full text-white placeholder-gray-500 rounded-xl py-3.5 px-5 focus:outline-none border border-gray-500 focus:border-gray-500 resize-none max-h-96 overflow-y-auto leading-relaxed transition-all duration-200"
-    ></textarea>
-  </div>
-</div>
+      " class="w-full text-white placeholder-gray-500 rounded-xl py-3.5 px-5 focus:outline-none border border-gray-500 focus:border-gray-500 resize-none max-h-96 overflow-y-auto leading-relaxed transition-all duration-200"></textarea>
+      </div>
+    </div>
 
-  <!-- Pop-out sidenav for Chats -->
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div style="padding: 12px;">
-<!-- <input 
+    <!-- Pop-out sidenav for Chats -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div style="padding: 12px;">
+        <!-- <input 
   type="text" 
   id="chatSearch" 
   placeholder="Search chats..."
   style="background-color: #0d0d0d !important;" 
   class="w-full bg-[#0d0d0d] text-white placeholder-gray-400 rounded-lg py-2.5 px-4 pl-10 focus:outline-none border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200"
 > -->
-</div>
-    <div id="chatsText" style="padding: 12px; text-align: left;">
-      <div class="login-containertwo">
-        <small>
-          <p style="color:gray;" class="text-left">Chats</p>
-        </small>
+      </div>
+      <div id="chatsText" style="padding: 12px; text-align: left;">
+        <div class="login-containertwo">
+          <small>
+            <p style="color:gray;" class="text-left">Chats</p>
+          </small>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    if (localStorage.getItem(DARK_MODE_KEY) === 'true') {
-      enableDarkMode();
-    }
-
-    toggle.addEventListener('click', () => {
-      if (body.classList.contains('dark-mode')) {
-        disableDarkMode();
-      } else {
+    <script>
+      if (localStorage.getItem(DARK_MODE_KEY) === 'true') {
         enableDarkMode();
       }
-    });
 
-    function enableDarkMode() {
-      body.classList.add('dark-mode');
-      if (cardOverlay) cardOverlay.classList.add('dark');
-      if (cardInner) cardInner.classList.add('dark');
-      localStorage.setItem(DARK_MODE_KEY, 'true');
-    }
+      toggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+          disableDarkMode();
+        } else {
+          enableDarkMode();
+        }
+      });
 
-    function disableDarkMode() {
-      body.classList.remove('dark-mode');
-      if (cardOverlay) cardOverlay.classList.remove('dark');
-      if (cardInner) cardInner.classList.remove('dark');
-      localStorage.setItem(DARK_MODE_KEY, 'false');
-    }
-  </script>
+      function enableDarkMode() {
+        body.classList.add('dark-mode');
+        if (cardOverlay) cardOverlay.classList.add('dark');
+        if (cardInner) cardInner.classList.add('dark');
+        localStorage.setItem(DARK_MODE_KEY, 'true');
+      }
 
-  <script>
-    function openIframe(url) {
-      // create overlay
-      const overlay = document.createElement("div");
-      overlay.classList.add("iframe-center-overlay");
+      function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        if (cardOverlay) cardOverlay.classList.remove('dark');
+        if (cardInner) cardInner.classList.remove('dark');
+        localStorage.setItem(DARK_MODE_KEY, 'false');
+      }
+    </script>
 
-      // iframe box
-      const box = document.createElement("div");
-      box.classList.add("iframe-center-box");
-      box.innerHTML = `
+    <script>
+      function openIframe(url) {
+        // create overlay
+        const overlay = document.createElement("div");
+        overlay.classList.add("iframe-center-overlay");
+
+        // iframe box
+        const box = document.createElement("div");
+        box.classList.add("iframe-center-box");
+        box.innerHTML = `
     <iframe src="${url}" loading="lazy" frameborder="0" allowfullscreen></iframe>
   `;
 
-      overlay.appendChild(box);
-      document.body.appendChild(overlay);
+        overlay.appendChild(box);
+        document.body.appendChild(overlay);
 
-      // fade-in
-      setTimeout(() => overlay.classList.add("visible"), 10);
+        // fade-in
+        setTimeout(() => overlay.classList.add("visible"), 10);
 
-      // close logic
-      function closeIframe() {
-        overlay.classList.remove("visible");
-        setTimeout(() => overlay.remove(), 250);
-        window.removeEventListener("message", onMessage);
-      }
-
-      // click outside = close
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeIframe();
-      });
-
-      // close button
-      box.querySelector(".iframe-close").addEventListener("click", closeIframe);
-
-      // message listener
-      function onMessage(event) {
-        // optionally restrict by origin: if (event.origin !== "https://syvaai.com") return;
-        if (typeof event.data === "string" && event.data.toLowerCase().includes("close-iframe")) {
-          closeIframe();
+        // close logic
+        function closeIframe() {
+          overlay.classList.remove("visible");
+          setTimeout(() => overlay.remove(), 250);
+          window.removeEventListener("message", onMessage);
         }
+
+        // click outside = close
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) closeIframe();
+        });
+
+        // close button
+        box.querySelector(".iframe-close").addEventListener("click", closeIframe);
+
+        // message listener
+        function onMessage(event) {
+          // optionally restrict by origin: if (event.origin !== "https://syvaai.com") return;
+          if (typeof event.data === "string" && event.data.toLowerCase().includes("close-iframe")) {
+            closeIframe();
+          }
+        }
+
+        window.addEventListener("message", onMessage);
       }
 
-      window.addEventListener("message", onMessage);
-    }
+    </script>
 
-  </script>
+    <script>
+      const textarea = document.getElementById('input-text');
 
-  <script>
-    const textarea = document.getElementById('input-text');
-
-    textarea.addEventListener('input', () => {
-      textarea.style.height = 'auto';                // reset height
-      textarea.style.height = textarea.scrollHeight + 'px'; // grow or shrink
-    });
-  </script>
+      textarea.addEventListener('input', () => {
+        textarea.style.height = 'auto';                // reset height
+        textarea.style.height = textarea.scrollHeight + 'px'; // grow or shrink
+      });
+    </script>
 
 
 
-  <script>
-    const toggle = document.getElementById('dark-toggle');
-    const body = document.body;
-    const DARK_MODE_KEY = 'darkMode';
+    <script>
+      const toggle = document.getElementById('dark-toggle');
+      const body = document.body;
+      const DARK_MODE_KEY = 'darkMode';
 
-    // Select card elements
-    const card = document.querySelector('.card');
-    const cardOverlay = document.querySelector('.card-overlay');
-    const cardInner = document.querySelector('.card-inner');
+      // Select card elements
+      const card = document.querySelector('.card');
+      const cardOverlay = document.querySelector('.card-overlay');
+      const cardInner = document.querySelector('.card-inner');
 
-    // Load saved mode
-    if (localStorage.getItem(DARK_MODE_KEY) === 'true') {
-      enableDarkMode();
-    }
-
-    toggle.addEventListener('click', () => {
-      if (body.classList.contains('dark-mode')) {
-        disableDarkMode();
-      } else {
+      // Load saved mode
+      if (localStorage.getItem(DARK_MODE_KEY) === 'true') {
         enableDarkMode();
       }
-    });
 
-    function enableDarkMode() {
-      body.classList.add('dark-mode');
-      card.classList.add('dark');
-      cardOverlay.classList.add('dark');
-      cardInner.classList.add('dark');
-      localStorage.setItem(DARK_MODE_KEY, 'true');
-    }
-
-    function disableDarkMode() {
-      body.classList.remove('dark-mode');
-      card.classList.remove('dark');
-      cardOverlay.classList.remove('dark');
-      cardInner.classList.remove('dark');
-      localStorage.setItem(DARK_MODE_KEY, 'false');
-    }
-  </script>
-
-
-
-  <script>
-    function toggleArtifact(show, content = '') {
-      const pane = document.getElementById('artifactPane');
-      const pre = document.getElementById('artifactContent');
-      if (show) {
-        pre.textContent = content.trim();
-        pane.classList.remove('hidden');
-      } else {
-        pane.classList.add('hidden');
-      }
-    }
-
-  </script>
-
-  <script>
-    function appendMessage(sender, message) {
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message', sender === 'User' ? 'message-user' : 'message-ai');
-
-      if (sender === 'AI' || sender === 'Assistant') {
-        // Allow ALL HTML/CSS that the AI generates
-        const cleanConfig = {
-          ALLOWED_TAGS: ['div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'strong', 'em', 'code', 'pre', 'table', 'tr', 'td', 'th', 'thead', 'tbody', 'br', 'hr', 'a', 'img', 'small', 'details', 'summary'],
-          ALLOWED_ATTR: ['style', 'class', 'onmouseover', 'onmouseout', 'onclick', 'href', 'src', 'alt', 'title'],
-          ALLOW_DATA_ATTR: false,
-          KEEP_CONTENT: true
-        };
-
-        // Parse markdown first
-        let rendered = marked.parse(message, {
-          breaks: true,
-          gfm: true
-        });
-
-        // ✅ FIX: Unescape HTML entities inside <pre><code> blocks
-        rendered = rendered.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
-          // Decode HTML entities
-          const textarea = document.createElement('textarea');
-          textarea.innerHTML = code;
-          return textarea.value; // Returns unescaped HTML
-        });
-
-        messageDiv.innerHTML = DOMPurify.sanitize(rendered, cleanConfig);
-      } else {
-        // User messages stay as plain text
-        messageDiv.textContent = message;
-      }
-
-      document.getElementById('chat').appendChild(messageDiv);
-      document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
-    }
-  </script>
-
-  <!-- Dropdown menu visibility management -->
-  <script>
-    // ADD THIS AT THE TOP - Track session ID
-    let currentSessionId = null;
-
-    initializeChat();
-
-    function initializeChat() {
-      const input = document.getElementById('input');
-      input.addEventListener("keyup", (e) => {
-        if (e.key === "Enter" && input.value.trim()) {
-          sendMessage(input.value.trim());
-          input.value = "";
+      toggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+          disableDarkMode();
+        } else {
+          enableDarkMode();
         }
       });
-    }
 
-    async function sendMessage(message) {
-      appendMessage("User", message);
+      function enableDarkMode() {
+        body.classList.add('dark-mode');
+        card.classList.add('dark');
+        cardOverlay.classList.add('dark');
+        cardInner.classList.add('dark');
+        localStorage.setItem(DARK_MODE_KEY, 'true');
+      }
 
-      const chat = document.getElementById('chat');
-
-      // Create AI message with main loader
-      const loaderDiv = document.createElement('div');
-      loaderDiv.classList.add('message', 'message-ai');
-      loaderDiv.innerHTML = `<!-- From Uiverse.io by Fernando-sv --> 
-<div class="loader"></div>`;
-      chat.appendChild(loaderDiv);
-      chat.scrollTop = chat.scrollHeight;
-
-      // Create the second (slow) spinner — hidden at first
-      const slowSpinner = document.createElement('div');
-      slowSpinner.classList.add('slow-spinner');
-      slowSpinner.innerHTML = `<br><img src="/logos/logo/time-svgrepo-com.png" height="20px" width="20px">`;
-      slowSpinner.style.display = "none"; // start hidden
-      loaderDiv.appendChild(slowSpinner);
-
-      // Create the third (very slow) spinner — hidden at first
-      const veryslowSpinner = document.createElement('div');
-      veryslowSpinner.classList.add('veryslow-spinner');
-      veryslowSpinner.innerHTML = `<img src="/logos/logo/warning.png" height="20px" width="40px">`;
-      veryslowSpinner.style.display = "none"; // start hidden
-      loaderDiv.appendChild(veryslowSpinner);
+      function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        card.classList.remove('dark');
+        cardOverlay.classList.remove('dark');
+        cardInner.classList.remove('dark');
+        localStorage.setItem(DARK_MODE_KEY, 'false');
+      }
+    </script>
 
 
-      const startTime = Date.now();
 
-      // Start 10s timer for the slow spinner
-      const slowTimer = setTimeout(() => {
-        slowSpinner.style.display = 'block';
-      }, 20000); // 20 seconds
+    <script>
+      function toggleArtifact(show, content = '') {
+        const pane = document.getElementById('artifactPane');
+        const pre = document.getElementById('artifactContent');
+        if (show) {
+          pre.textContent = content.trim();
+          pane.classList.remove('hidden');
+        } else {
+          pane.classList.add('hidden');
+        }
+      }
 
-      const veryslowTimer = setTimeout(() => {
-        veryslowSpinner.style.display = 'block';
-      }, 50000); // 50 seconds
+    </script>
 
-      try {
-        const response = await fetch('https://api.syvaai.com/ask', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            question: message,
-            top_k: 2,
-            session_id: currentSessionId  // ← ADDED: Send session ID
-          })
-        });
+    <script>
+      function appendMessage(sender, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender === 'User' ? 'message-user' : 'message-ai');
 
-        clearTimeout(slowTimer); // stop showing slow spinner if done
-        slowSpinner.style.display = 'none';
+        if (sender === 'AI' || sender === 'Assistant') {
+          // Allow ALL HTML/CSS that the AI generates
+          const cleanConfig = {
+            ALLOWED_TAGS: ['div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'strong', 'em', 'code', 'pre', 'table', 'tr', 'td', 'th', 'thead', 'tbody', 'br', 'hr', 'a', 'img', 'small', 'details', 'summary'],
+            ALLOWED_ATTR: ['style', 'class', 'onmouseover', 'onmouseout', 'onclick', 'href', 'src', 'alt', 'title'],
+            ALLOW_DATA_ATTR: false,
+            KEEP_CONTENT: true
+          };
 
-        // clearTimeout(veryslowTimer); // stop showing slow spinner if done
-        // veryslowSpinner.style.display = 'none';
+          // Parse markdown first
+          let rendered = marked.parse(message, {
+            breaks: true,
+            gfm: true
+          });
 
-        const data = await response.json();
+          // ✅ FIX: Unescape HTML entities inside <pre><code> blocks
+          rendered = rendered.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+            // Decode HTML entities
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = code;
+            return textarea.value; // Returns unescaped HTML
+          });
 
-        // ← ADDED: Save the session ID for next message
-        if (data.session_id) {
-          currentSessionId = data.session_id;
+          messageDiv.innerHTML = DOMPurify.sanitize(rendered, cleanConfig);
+        } else {
+          // User messages stay as plain text
+          messageDiv.textContent = message;
         }
 
-        const aiMessage = data.answer ?? data.response ?? `<div class="error-alert">
+        document.getElementById('chat').appendChild(messageDiv);
+        document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+      }
+    </script>
+
+    <!-- Dropdown menu visibility management -->
+    <script>
+      // ADD THIS AT THE TOP - Track session ID
+      let currentSessionId = null;
+
+      initializeChat();
+
+      function initializeChat() {
+        const input = document.getElementById('input');
+        input.addEventListener("keyup", (e) => {
+          if (e.key === "Enter" && input.value.trim()) {
+            sendMessage(input.value.trim());
+            input.value = "";
+          }
+        });
+      }
+
+      async function sendMessage(message) {
+        appendMessage("User", message);
+
+        const chat = document.getElementById('chat');
+
+        // Create AI message with main loader
+        const loaderDiv = document.createElement('div');
+        loaderDiv.classList.add('message', 'message-ai');
+        loaderDiv.innerHTML = `<!-- From Uiverse.io by Fernando-sv --> 
+<div class="loader"></div>`;
+        chat.appendChild(loaderDiv);
+        chat.scrollTop = chat.scrollHeight;
+
+        // Create the second (slow) spinner — hidden at first
+        const slowSpinner = document.createElement('div');
+        slowSpinner.classList.add('slow-spinner');
+        slowSpinner.innerHTML = `<br><img src="/logos/logo/time-svgrepo-com.png" height="20px" width="20px">`;
+        slowSpinner.style.display = "none"; // start hidden
+        loaderDiv.appendChild(slowSpinner);
+
+        // Create the third (very slow) spinner — hidden at first
+        const veryslowSpinner = document.createElement('div');
+        veryslowSpinner.classList.add('veryslow-spinner');
+        veryslowSpinner.innerHTML = `<img src="/logos/logo/warning.png" height="20px" width="40px">`;
+        veryslowSpinner.style.display = "none"; // start hidden
+        loaderDiv.appendChild(veryslowSpinner);
+
+
+        const startTime = Date.now();
+
+        // Start 10s timer for the slow spinner
+        const slowTimer = setTimeout(() => {
+          slowSpinner.style.display = 'block';
+        }, 20000); // 20 seconds
+
+        const veryslowTimer = setTimeout(() => {
+          veryslowSpinner.style.display = 'block';
+        }, 50000); // 50 seconds
+
+        try {
+          const response = await fetch('https://api.syvaai.com/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              question: message,
+              top_k: 2,
+              session_id: currentSessionId  // ← ADDED: Send session ID
+            })
+          });
+
+          clearTimeout(slowTimer); // stop showing slow spinner if done
+          slowSpinner.style.display = 'none';
+
+          // clearTimeout(veryslowTimer); // stop showing slow spinner if done
+          // veryslowSpinner.style.display = 'none';
+
+          const data = await response.json();
+
+          // ← ADDED: Save the session ID for next message
+          if (data.session_id) {
+            currentSessionId = data.session_id;
+          }
+
+          const aiMessage = data.answer ?? data.response ?? `<div class="error-alert">
     <p class="alert-content">
       <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
         stroke-linecap="round" stroke-linejoin="round" height="28" width="28"
@@ -2381,45 +2395,45 @@
       for a explanation for this error.</small></small>
     </p></div>`;
 
-        // Ensure loader shows at least 1 second
-        const elapsed = Date.now() - startTime;
-        const delay = Math.max(0, 1000 - elapsed);
+          // Ensure loader shows at least 1 second
+          const elapsed = Date.now() - startTime;
+          const delay = Math.max(0, 1000 - elapsed);
 
-        setTimeout(() => {
-          // Remove the loader div
-          loaderDiv.remove();
+          setTimeout(() => {
+            // Remove the loader div
+            loaderDiv.remove();
 
-          // Use appendMessage to properly format markdown
-          appendMessage("AI", aiMessage);
+            // Use appendMessage to properly format markdown
+            appendMessage("AI", aiMessage);
 
-          // Save to Firebase
-          saveMessageToFirebase(message, aiMessage);
-        }, delay);
+            // Save to Firebase
+            saveMessageToFirebase(message, aiMessage);
+          }, delay);
 
-        if (!activeChatId || !chatSessions[activeChatId]) {
-          activeChatId = 'chat_' + Date.now();
-          chatSessions[activeChatId] = {
-            id: activeChatId,
-            title: userMsg.substring(0, 30) || "New Chat",
-            messages: [],
-            sessionId: currentSessionId,
-            created: Date.now(),
-            lastUpdated: Date.now()
-          };
-        }
+          if (!activeChatId || !chatSessions[activeChatId]) {
+            activeChatId = 'chat_' + Date.now();
+            chatSessions[activeChatId] = {
+              id: activeChatId,
+              title: userMsg.substring(0, 30) || "New Chat",
+              messages: [],
+              sessionId: currentSessionId,
+              created: Date.now(),
+              lastUpdated: Date.now()
+            };
+          }
 
 
-      } catch (error) {
-        console.error("API Error:", error);
+        } catch (error) {
+          console.error("API Error:", error);
 
-        clearTimeout(slowTimer);
-        slowSpinner.style.display = 'none';
+          clearTimeout(slowTimer);
+          slowSpinner.style.display = 'none';
 
-        const elapsed = Date.now() - startTime;
-        const delay = Math.max(0, 1000 - elapsed);
+          const elapsed = Date.now() - startTime;
+          const delay = Math.max(0, 1000 - elapsed);
 
-        setTimeout(() => {
-          loaderDiv.innerHTML = `<div class="error-alert">
+          setTimeout(() => {
+            loaderDiv.innerHTML = `<div class="error-alert">
       <p class="alert-content">
         <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
           stroke-linecap="round" stroke-linejoin="round" height="28" width="28"
@@ -2433,243 +2447,249 @@
         <a href="https://syvaai.zohodesk.com/portal/en/kb/articles/error-67"><u>Click here</u></a>
         for a explanation for this error.</small></small>
       </p></div>`;
-          chat.scrollTop = chat.scrollHeight;
-        }, delay);
-      }
-    }
-
-
-    function changeContent2() {
-      alert("Coming soon!");
-    }
-
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "100%";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-
-    async function startNewChat() {
-      // Make sure no ghost chat is created
-      const chatId = 'chat_' + Date.now();
-      chatSessions[chatId] = {
-        id: chatId,
-        title: 'New Chat',
-        messages: [],
-        sessionId: null,
-        created: Date.now(),
-        lastUpdated: Date.now()
-      };
-
-      activeChatId = chatId;
-      currentSessionId = null;
-      document.getElementById('chat').innerHTML = '';
-
-      // 🟡 Only save AFTER first message is sent
-      renderChatList();
-      console.log("Started new conversation (not yet saved):", chatId);
-    }
-// Filter chats based on search input
-const chatSearchInput = document.getElementById('chatSearch');
-
-if (chatSearchInput) {
-  chatSearchInput.addEventListener('input', () => {
-    const query = chatSearchInput.value.toLowerCase().trim();
-
-    // Get all chat divs that exist right now
-    const chatDivs = document.querySelectorAll('[data-chat-id]');
-    
-    chatDivs.forEach(chatDiv => {
-      const chatId = chatDiv.getAttribute('data-chat-id');
-      const chat = chatSessions[chatId];
-      
-      if (!chat) return;
-      
-      const title = chat.title.toLowerCase();
-      
-      // Show if query is empty OR title matches
-      if (query === '' || title.includes(query)) {
-        chatDiv.style.display = 'flex';
-      } else {
-        chatDiv.style.display = 'none';
-      }
-    });
-  });
-}
-
-  </script>
-  <!-- Popup reminder visibility persistence -->
-  <script>
-    // Grab the text input
-    const inputText = document.getElementById('input-text');
-
-    // Make it respond to Enter key
-    inputText.addEventListener('keyup', (e) => {
-      if (e.key === 'Enter' && inputText.value.trim()) {
-        sendMessage(inputText.value.trim());
-        inputText.value = ""; // clear input after sending
-      }
-    });
-
-    // Reuse your existing sendMessage() and appendMessage() functions
-  </script>
-
-  <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "300px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-  </script>
-
-
-  <script>
-    function myFunction() {
-      var dropdown = document.getElementById("myDropdown");
-      if (dropdown.style.display === "block") {
-        dropdown.style.display = "none";
-      } else {
-        dropdown.style.display = "block";
-      }
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (event) {
-      if (!event.target.closest('.dropdown')) {
-        var dropdown = document.getElementById("myDropdown");
-        dropdown.style.display = "none";
-      }
-    }
-  </script>
-
-  <script>
-    window.onload = function () {
-      // Check if the user already closed the popup
-      const hasClosedPopup = localStorage.getItem('popupClosed');
-      const popup = document.getElementById('popup');
-
-      // Only show the popup if it hasn't been closed before
-      if (!hasClosedPopup) {
-        setTimeout(function () {
-          popup.style.display = 'block'; // Make it block so it occupies space
-          setTimeout(function () {
-            popup.style.opacity = '1'; // Fade in
-          }, 10); // Slight delay to trigger CSS transition
-        }, 1000);
-      }
-
-      // Attach close event to the button
-      const closeBtn = document.getElementById('close-btn');
-      closeBtn.onclick = function () {
-        popup.style.opacity = '0'; // Fade out
-        setTimeout(function () {
-          popup.style.display = 'none';
-          localStorage.setItem('popupClosed', 'true'); // Remember user closed popup
-        }, 500);
-      };
-    };
-
-    async function deleteChat(chatId, event) {
-      event.stopPropagation();
-
-      if (!confirm('Delete this chat?')) return;
-
-      const user = firebase.auth().currentUser;
-
-      // Delete from Firebase
-      if (user && db) {
-        try {
-          await db.collection('users').doc(user.uid).collection('chats').doc(chatId).delete();
-          console.log('Deleted from Firebase:', chatId);
-        } catch (e) {
-          console.error('Error deleting:', e);
+            chat.scrollTop = chat.scrollHeight;
+          }, delay);
         }
       }
 
-      // Delete locally
-      delete chatSessions[chatId];
 
-      // If we deleted the active chat, start a new one
-      if (activeChatId === chatId) {
-        await startNewChat();
-      } else {
-        renderChatList();
+      function changeContent2() {
+        alert("Coming soon!");
       }
-    }
 
-    async function renameChat(chatId, event) {
-      event.stopPropagation();
-      const newName = prompt("Rename chat:", chatSessions[chatId]?.title || "New Chat");
-      if (!newName) return;
+      function openNav() {
+        if (window.innerWidth <= 768) {
+          document.getElementById("mySidenav").classList.add("open");
+        }
+        // Do nothing on desktop - sidebar is already open
+      }
 
-      chatSessions[chatId].title = newName.trim();
-      const user = firebase.auth().currentUser;
+      function closeNav() {
+        if (window.innerWidth <= 768) {
+          document.getElementById("mySidenav").classList.remove("open");
+        }
+        // Do nothing on desktop - sidebar stays open
+      }
 
-      if (user && db) {
-        await db.collection('users').doc(user.uid).collection('chats').doc(chatId).update({
-          title: newName.trim(),
+      async function startNewChat() {
+        // Make sure no ghost chat is created
+        const chatId = 'chat_' + Date.now();
+        chatSessions[chatId] = {
+          id: chatId,
+          title: 'New Chat',
+          messages: [],
+          sessionId: null,
+          created: Date.now(),
           lastUpdated: Date.now()
-        });
-      }
+        };
 
-      renderChatList();
-    }
+        activeChatId = chatId;
+        currentSessionId = null;
+        document.getElementById('chat').innerHTML = '';
 
-  </script>
-  <!-- Persistent chat history synchronization -->
-  <script>
-    // Firebase chat list only
-    let chatSessions = {};
-    let activeChatId = null;
-    let db;
-
-    setTimeout(() => {
-      if (firebase && firebase.firestore) {
-        db = firebase.firestore();
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            loadChatsFromFirebase(user.uid);
-          }
-        });
-      }
-    }, 1000);
-
-    async function loadChatsFromFirebase(userId) {
-      if (!db) return;
-      try {
-        const snapshot = await db.collection('users').doc(userId).collection('chats').orderBy('lastUpdated', 'desc').get();
-        chatSessions = {};
-        snapshot.forEach(doc => chatSessions[doc.id] = doc.data());
+        // 🟡 Only save AFTER first message is sent
         renderChatList();
-      } catch (e) {
-        console.error('Error loading chats:', e);
+        console.log("Started new conversation (not yet saved):", chatId);
       }
-    }
+      // Filter chats based on search input
+      const chatSearchInput = document.getElementById('chatSearch');
 
-    function renderChatList() {
-      const container = document.getElementById('chatsText');
-      if (!container) return;
+      if (chatSearchInput) {
+        chatSearchInput.addEventListener('input', () => {
+          const query = chatSearchInput.value.toLowerCase().trim();
 
-      const chatIds = Object.keys(chatSessions);
-      if (chatIds.length === 0) {
-        container.innerHTML = '<div class="login-containertwo"><small><p style="color:gray;">No chats yet</p></small></div>';
-        return;
+          // Get all chat divs that exist right now
+          const chatDivs = document.querySelectorAll('[data-chat-id]');
+
+          chatDivs.forEach(chatDiv => {
+            const chatId = chatDiv.getAttribute('data-chat-id');
+            const chat = chatSessions[chatId];
+
+            if (!chat) return;
+
+            const title = chat.title.toLowerCase();
+
+            // Show if query is empty OR title matches
+            if (query === '' || title.includes(query)) {
+              chatDiv.style.display = 'flex';
+            } else {
+              chatDiv.style.display = 'none';
+            }
+          });
+        });
       }
 
-      let html = '<div class="login-containertwo"><small><p style="color:gray;">Chats</p></small></div>';
+    </script>
+    <!-- Popup reminder visibility persistence -->
+    <script>
+      // Grab the text input
+      const inputText = document.getElementById('input-text');
 
-      chatIds.forEach(chatId => {
-        const chat = chatSessions[chatId];
-        const title = chat.title || 'New Chat';
-        const isActive = chatId === activeChatId;
+      // Make it respond to Enter key
+      inputText.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter' && inputText.value.trim()) {
+          sendMessage(inputText.value.trim());
+          inputText.value = ""; // clear input after sending
+        }
+      });
+
+      // Reuse your existing sendMessage() and appendMessage() functions
+    </script>
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "300px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+
+
+    <script>
+      function myFunction() {
+        var dropdown = document.getElementById("myDropdown");
+        if (dropdown.style.display === "block") {
+          dropdown.style.display = "none";
+        } else {
+          dropdown.style.display = "block";
+        }
+      }
+
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.closest('.dropdown')) {
+          var dropdown = document.getElementById("myDropdown");
+          dropdown.style.display = "none";
+        }
+      }
+    </script>
+
+    <script>
+      window.onload = function () {
+        // Check if the user already closed the popup
+        const hasClosedPopup = localStorage.getItem('popupClosed');
+        const popup = document.getElementById('popup');
+
+        // Only show the popup if it hasn't been closed before
+        if (!hasClosedPopup) {
+          setTimeout(function () {
+            popup.style.display = 'block'; // Make it block so it occupies space
+            setTimeout(function () {
+              popup.style.opacity = '1'; // Fade in
+            }, 10); // Slight delay to trigger CSS transition
+          }, 1000);
+        }
+
+        // Attach close event to the button
+        const closeBtn = document.getElementById('close-btn');
+        closeBtn.onclick = function () {
+          popup.style.opacity = '0'; // Fade out
+          setTimeout(function () {
+            popup.style.display = 'none';
+            localStorage.setItem('popupClosed', 'true'); // Remember user closed popup
+          }, 500);
+        };
+      };
+
+      async function deleteChat(chatId, event) {
+        event.stopPropagation();
+
+        if (!confirm('Delete this chat?')) return;
+
+        const user = firebase.auth().currentUser;
+
+        // Delete from Firebase
+        if (user && db) {
+          try {
+            await db.collection('users').doc(user.uid).collection('chats').doc(chatId).delete();
+            console.log('Deleted from Firebase:', chatId);
+          } catch (e) {
+            console.error('Error deleting:', e);
+          }
+        }
+
+        // Delete locally
+        delete chatSessions[chatId];
+
+        // If we deleted the active chat, start a new one
+        if (activeChatId === chatId) {
+          await startNewChat();
+        } else {
+          renderChatList();
+        }
+      }
+
+      async function renameChat(chatId, event) {
+        event.stopPropagation();
+        const newName = prompt("Rename chat:", chatSessions[chatId]?.title || "New Chat");
+        if (!newName) return;
+
+        chatSessions[chatId].title = newName.trim();
+        const user = firebase.auth().currentUser;
+
+        if (user && db) {
+          await db.collection('users').doc(user.uid).collection('chats').doc(chatId).update({
+            title: newName.trim(),
+            lastUpdated: Date.now()
+          });
+        }
+
+        renderChatList();
+      }
+
+    </script>
+    <!-- Persistent chat history synchronization -->
+    <script>
+      // Firebase chat list only
+      let chatSessions = {};
+      let activeChatId = null;
+      let db;
+
+      setTimeout(() => {
+        if (firebase && firebase.firestore) {
+          db = firebase.firestore();
+          firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              loadChatsFromFirebase(user.uid);
+            }
+          });
+        }
+      }, 1000);
+
+      async function loadChatsFromFirebase(userId) {
+        if (!db) return;
+        try {
+          const snapshot = await db.collection('users').doc(userId).collection('chats').orderBy('lastUpdated', 'desc').get();
+          chatSessions = {};
+          snapshot.forEach(doc => chatSessions[doc.id] = doc.data());
+          renderChatList();
+        } catch (e) {
+          console.error('Error loading chats:', e);
+        }
+      }
+
+      function renderChatList() {
+        const container = document.getElementById('chatsText');
+        if (!container) return;
+
+        const chatIds = Object.keys(chatSessions);
+        if (chatIds.length === 0) {
+          container.innerHTML = '<div class="login-containertwo"><small><p style="color:gray;">No chats yet</p></small></div>';
+          return;
+        }
+
+        let html = '<div class="login-containertwo"><small><p style="color:gray;">Chats</p></small></div>';
+
+        chatIds.forEach(chatId => {
+          const chat = chatSessions[chatId];
+          const title = chat.title || 'New Chat';
+          const isActive = chatId === activeChatId;
 
 
 
-html += `
+          html += `
   <div data-chat-id="${chatId}" style="
     padding: 10px;
     margin: 8px;
@@ -2695,170 +2715,170 @@ html += `
   </div>
 `;
 
-      });
-
-      container.innerHTML = html;
-    }
-
-    function loadChatFromList(chatId) {
-      const chat = chatSessions[chatId];
-      if (!chat) return;
-
-      // Clear current chat messages
-      document.getElementById('chat').innerHTML = '';
-
-      // Load messages from Firestore memory
-      chat.messages.forEach(msg => {
-        appendMessage(msg.sender, msg.content);
-      });
-
-      // Set active session
-      activeChatId = chatId;
-      currentSessionId = chat.sessionId;
-
-      // Re-render list to highlight the active chat
-      renderChatList();
-
-      // ✅ Close sidenav, but DO NOT hide chat list
-      closeNav();
-    }
-
-
-
-    async function saveMessageToFirebase(userMsg, aiMsg) {
-      const user = firebase.auth().currentUser;
-      if (!user || !db) return;
-
-      // Create new chat if none active
-      if (!activeChatId) {
-        activeChatId = 'chat_' + Date.now();
-        chatSessions[activeChatId] = {
-          id: activeChatId,
-          title: userMsg.substring(0, 30),
-          messages: [],
-          sessionId: currentSessionId,
-          created: Date.now(),
-          lastUpdated: Date.now()
-        };
-      }
-
-      // Add messages
-      chatSessions[activeChatId].messages.push(
-        { sender: 'User', content: userMsg, timestamp: Date.now() },
-        { sender: 'AI', content: aiMsg, timestamp: Date.now() }
-      );
-      chatSessions[activeChatId].lastUpdated = Date.now();
-      chatSessions[activeChatId].sessionId = currentSessionId;
-
-      // Save to Firebase
-      try {
-        await db.collection('users').doc(user.uid).collection('chats').doc(activeChatId).set(chatSessions[activeChatId]);
-        renderChatList(); // Update sidebar
-      } catch (e) {
-        console.error('Error saving:', e);
-      }
-    }
-  </script>
-  <script>
-    // ✅ START NEW CHAT — prevents ghost "New Chat" spam
-    async function startNewChat() {
-      const chatId = 'chat_' + Date.now();
-      chatSessions[chatId] = {
-        id: chatId,
-        title: 'New Chat',
-        messages: [],
-        sessionId: null,
-        created: Date.now(),
-        lastUpdated: Date.now()
-      };
-
-      activeChatId = chatId;
-      currentSessionId = null;
-      document.getElementById('chat').innerHTML = '';
-
-      // 🟡 Don't save yet — only after first message
-      renderChatList();
-      console.log("Started new chat (not saved until message):", chatId);
-    }
-
-    // ✅ SAVE MESSAGE — only saves real chats + auto-titles them
-    async function saveMessageToFirebase(userMsg, aiMsg) {
-      const user = firebase.auth().currentUser;
-      if (!user || !db) return;
-
-      // Create chat only when needed
-      if (!activeChatId || !chatSessions[activeChatId]) {
-        activeChatId = 'chat_' + Date.now();
-        chatSessions[activeChatId] = {
-          id: activeChatId,
-          title: userMsg.substring(0, 30) || 'New Chat',
-          messages: [],
-          sessionId: currentSessionId,
-          created: Date.now(),
-          lastUpdated: Date.now()
-        };
-      }
-
-      // Add messages to memory
-      chatSessions[activeChatId].messages.push(
-        { sender: 'User', content: userMsg, timestamp: Date.now() },
-        { sender: 'AI', content: aiMsg, timestamp: Date.now() }
-      );
-      chatSessions[activeChatId].lastUpdated = Date.now();
-      chatSessions[activeChatId].sessionId = currentSessionId;
-
-      // Auto-name from first message if still "New Chat"
-      if (chatSessions[activeChatId].title === 'New Chat' && userMsg.trim()) {
-        const newTitle = userMsg.slice(0, 30) + (userMsg.length > 30 ? '…' : '');
-        chatSessions[activeChatId].title = newTitle;
-      }
-
-      // Save to Firestore only if it has real messages
-      try {
-        if (chatSessions[activeChatId].messages.length > 0) {
-          await db.collection('users').doc(user.uid)
-            .collection('chats').doc(activeChatId)
-            .set(chatSessions[activeChatId]);
-          renderChatList();
-        }
-      } catch (e) {
-        console.error('🔥 Error saving chat:', e);
-      }
-    }
-
-    // ✅ LOAD CHATS — cleans up empties automatically
-    async function loadChatsFromFirebase(userId) {
-      if (!db) return;
-      try {
-        const snapshot = await db.collection('users')
-          .doc(userId)
-          .collection('chats')
-          .orderBy('lastUpdated', 'desc')
-          .get();
-
-        chatSessions = {};
-        const batch = db.batch();
-
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          if (data.messages && data.messages.length > 0) {
-            chatSessions[doc.id] = data;
-          } else {
-            // Delete ghost/empty chats
-            const ref = db.collection('users').doc(userId).collection('chats').doc(doc.id);
-            batch.delete(ref);
-          }
         });
 
-        await batch.commit();
-        renderChatList();
-        console.log("✅ Chats loaded, ghosts removed:", Object.keys(chatSessions).length);
-      } catch (e) {
-        console.error('⚠️ Error loading chats:', e);
+        container.innerHTML = html;
       }
-    }
 
-  </script>
+      function loadChatFromList(chatId) {
+        const chat = chatSessions[chatId];
+        if (!chat) return;
+
+        // Clear current chat messages
+        document.getElementById('chat').innerHTML = '';
+
+        // Load messages from Firestore memory
+        chat.messages.forEach(msg => {
+          appendMessage(msg.sender, msg.content);
+        });
+
+        // Set active session
+        activeChatId = chatId;
+        currentSessionId = chat.sessionId;
+
+        // Re-render list to highlight the active chat
+        renderChatList();
+
+        // ✅ Close sidenav, but DO NOT hide chat list
+        closeNav();
+      }
+
+
+
+      async function saveMessageToFirebase(userMsg, aiMsg) {
+        const user = firebase.auth().currentUser;
+        if (!user || !db) return;
+
+        // Create new chat if none active
+        if (!activeChatId) {
+          activeChatId = 'chat_' + Date.now();
+          chatSessions[activeChatId] = {
+            id: activeChatId,
+            title: userMsg.substring(0, 30),
+            messages: [],
+            sessionId: currentSessionId,
+            created: Date.now(),
+            lastUpdated: Date.now()
+          };
+        }
+
+        // Add messages
+        chatSessions[activeChatId].messages.push(
+          { sender: 'User', content: userMsg, timestamp: Date.now() },
+          { sender: 'AI', content: aiMsg, timestamp: Date.now() }
+        );
+        chatSessions[activeChatId].lastUpdated = Date.now();
+        chatSessions[activeChatId].sessionId = currentSessionId;
+
+        // Save to Firebase
+        try {
+          await db.collection('users').doc(user.uid).collection('chats').doc(activeChatId).set(chatSessions[activeChatId]);
+          renderChatList(); // Update sidebar
+        } catch (e) {
+          console.error('Error saving:', e);
+        }
+      }
+    </script>
+    <script>
+      // ✅ START NEW CHAT — prevents ghost "New Chat" spam
+      async function startNewChat() {
+        const chatId = 'chat_' + Date.now();
+        chatSessions[chatId] = {
+          id: chatId,
+          title: 'New Chat',
+          messages: [],
+          sessionId: null,
+          created: Date.now(),
+          lastUpdated: Date.now()
+        };
+
+        activeChatId = chatId;
+        currentSessionId = null;
+        document.getElementById('chat').innerHTML = '';
+
+        // 🟡 Don't save yet — only after first message
+        renderChatList();
+        console.log("Started new chat (not saved until message):", chatId);
+      }
+
+      // ✅ SAVE MESSAGE — only saves real chats + auto-titles them
+      async function saveMessageToFirebase(userMsg, aiMsg) {
+        const user = firebase.auth().currentUser;
+        if (!user || !db) return;
+
+        // Create chat only when needed
+        if (!activeChatId || !chatSessions[activeChatId]) {
+          activeChatId = 'chat_' + Date.now();
+          chatSessions[activeChatId] = {
+            id: activeChatId,
+            title: userMsg.substring(0, 30) || 'New Chat',
+            messages: [],
+            sessionId: currentSessionId,
+            created: Date.now(),
+            lastUpdated: Date.now()
+          };
+        }
+
+        // Add messages to memory
+        chatSessions[activeChatId].messages.push(
+          { sender: 'User', content: userMsg, timestamp: Date.now() },
+          { sender: 'AI', content: aiMsg, timestamp: Date.now() }
+        );
+        chatSessions[activeChatId].lastUpdated = Date.now();
+        chatSessions[activeChatId].sessionId = currentSessionId;
+
+        // Auto-name from first message if still "New Chat"
+        if (chatSessions[activeChatId].title === 'New Chat' && userMsg.trim()) {
+          const newTitle = userMsg.slice(0, 30) + (userMsg.length > 30 ? '…' : '');
+          chatSessions[activeChatId].title = newTitle;
+        }
+
+        // Save to Firestore only if it has real messages
+        try {
+          if (chatSessions[activeChatId].messages.length > 0) {
+            await db.collection('users').doc(user.uid)
+              .collection('chats').doc(activeChatId)
+              .set(chatSessions[activeChatId]);
+            renderChatList();
+          }
+        } catch (e) {
+          console.error('🔥 Error saving chat:', e);
+        }
+      }
+
+      // ✅ LOAD CHATS — cleans up empties automatically
+      async function loadChatsFromFirebase(userId) {
+        if (!db) return;
+        try {
+          const snapshot = await db.collection('users')
+            .doc(userId)
+            .collection('chats')
+            .orderBy('lastUpdated', 'desc')
+            .get();
+
+          chatSessions = {};
+          const batch = db.batch();
+
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            if (data.messages && data.messages.length > 0) {
+              chatSessions[doc.id] = data;
+            } else {
+              // Delete ghost/empty chats
+              const ref = db.collection('users').doc(userId).collection('chats').doc(doc.id);
+              batch.delete(ref);
+            }
+          });
+
+          await batch.commit();
+          renderChatList();
+          console.log("✅ Chats loaded, ghosts removed:", Object.keys(chatSessions).length);
+        } catch (e) {
+          console.error('⚠️ Error loading chats:', e);
+        }
+      }
+
+    </script>
 </body>
 
 </html>
