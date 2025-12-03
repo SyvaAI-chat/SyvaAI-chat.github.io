@@ -2752,8 +2752,10 @@ textarea.addEventListener('change', () => {
         // Re-render list to highlight the active chat
         renderChatList();
 
-        // ✅ Close sidenav, but DO NOT hide chat list
-        closeNav();
+        // ✅ Only close sidenav on mobile
+        if (window.innerWidth <= 768) {
+          closeNav();
+        }
       }
 
 
