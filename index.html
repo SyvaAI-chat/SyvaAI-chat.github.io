@@ -135,15 +135,6 @@
 
 
   <style>
-    .w-screen {
-  margin-left: 250px;  /* Push content to the right on desktop */
-}
-
-@media (max-width: 768px) {
-  .w-screen {
-    margin-left: 0;  /* Full width on mobile */
-  }
-}
     /* General styles */
     .chat-container {
       width: 100%;
@@ -1845,59 +1836,40 @@
     }
 
     /* --- Sidenav animation for Chats --- */
-.sidenav {
-  height: 100%;
-  width: 250px;  /* Default width for desktop */
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  background-color: #0d0d0d;
-  overflow-x: hidden;
-  transition: 0.4s;
-  padding-top: 0;
-  border-right: 1px solid #333;
-}
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      background-color: #0d0d0d;
+      overflow-x: hidden;
+      transition: 0.4s;
+      border-right: 1px solid #333;
+    }
 
-/* Hide on mobile by default */
-@media (max-width: 768px) {
-  .sidenav {
-    width: 0;  /* Collapsed on mobile */
-  }
-  
-  .sidenav.open {
-    width: 250px;  /* Opens when toggled on mobile */
-  }
-}
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ccc;
+      display: block;
+      transition: 0.3s;
+    }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #ccc;
-  display: block;
-  transition: 0.3s;
-}
+    .sidenav a:hover {
+      color: #fff;
+    }
 
-.sidenav a:hover {
-  color: #fff;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 36px;
-  color: white;
-  cursor: pointer;
-  display: none;  /* Hide close button on desktop */
-}
-
-@media (max-width: 768px) {
-  .sidenav .closebtn {
-    display: block;  /* Show close button on mobile */
-  }
-}
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+    }
 
     .bottom-div {
       position: absolute;
@@ -2206,18 +2178,7 @@
         pane.classList.add('hidden');
       }
     }
- 
-    function openNav() {
-  if (window.innerWidth <= 768) {
-    document.getElementById("mySidenav").classList.add("open");
-  }
-}
 
-function closeNav() {
-  if (window.innerWidth <= 768) {
-    document.getElementById("mySidenav").classList.remove("open");
-  }
-}
   </script>
 
   <script>
