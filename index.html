@@ -135,6 +135,18 @@
 
 
   <style>
+
+    /* Main content area - shift right on desktop to make room for sidebar */
+    .w-screen {
+      margin-left: 0;
+      transition: margin-left 0.4s;
+    }
+
+    @media (min-width: 769px) {
+      .w-screen {
+        margin-left: 250px;  /* Make room for sidebar on desktop */
+      }
+    }
     /* General styles */
     .chat-container {
       width: 100%;
