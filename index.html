@@ -1927,11 +1927,21 @@
   scrollbar-color: #ffffff #1a1a1a;
 }
 
-    .bottom-div {
-      position: absolute;
-      bottom: 30px;
-      width: 95%;
-    }
+.bottom-div {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  padding: 0 2.5%;  /* Use padding instead of width */
+  transition: all 0.4s;
+}
+
+@media (min-width: 769px) {
+  .bottom-div {
+    left: 250px;  /* Account for sidebar */
+    padding: 0 2.5%;
+  }
+}
 
     .top-div {
       position: fixed;
@@ -2058,7 +2068,7 @@
   </div>
 
 <div class="bottom-div">
-  <div style="max-width: 96%; margin: 0 auto; position: relative; padding: 0 8px;">
+  <div style="max-width: 100%; margin: 0 auto; position: relative; padding: 0 8px;">
     <textarea 
       id="input-text" 
       placeholder="Message SyväAI..."
