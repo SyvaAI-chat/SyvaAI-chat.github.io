@@ -2330,136 +2330,96 @@ async function sendMessage(message) {
 
   const chat = document.getElementById('chat');
 
-  // Create AI message with main loader
-  const loaderDiv = document.createElement('div');
-  loaderDiv.classList.add('message', 'message-ai');
-  loaderDiv.innerHTML = `<!-- From Uiverse.io by Fernando-sv --> 
-<div class="loader"></div>`;
-  chat.appendChild(loaderDiv);
+  // Create AI message container
+  const aiMessageDiv = document.createElement('div');
+  aiMessageDiv.classList.add('message', 'message-ai');
+  aiMessageDiv.innerHTML = '<span class="streaming-cursor"></span>';
+  chat.appendChild(aiMessageDiv);
   chat.scrollTop = chat.scrollHeight;
 
-  // Create the second (slow) spinner — hidden at first
-  const slowSpinner = document.createElement('div');
-  slowSpinner.classList.add('slow-spinner');
-  slowSpinner.innerHTML = `<br><img src="/logos/logo/time-svgrepo-com.png" height="20px" width="20px">`;
-  slowSpinner.style.display = "none";
-  loaderDiv.appendChild(slowSpinner);
-
-  // Create the third (very slow) spinner — hidden at first
-  const veryslowSpinner = document.createElement('div');
-  veryslowSpinner.classList.add('veryslow-spinner');
-  veryslowSpinner.innerHTML = `<img src="/logos/logo/warning.png" height="20px" width="40px">`;
-  veryslowSpinner.style.display = "none";
-  loaderDiv.appendChild(veryslowSpinner);
-
-  const startTime = Date.now();
-
-  // Start timers for slow spinners
-  const slowTimer = setTimeout(() => {
-    slowSpinner.style.display = 'block';
-  }, 20000);
-
-  const veryslowTimer = setTimeout(() => {
-    veryslowSpinner.style.display = 'block';
-  }, 50000);
+  // Get current date and time
+  const now = new Date();
+  const currentDateTime = now.toLocaleString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short'
+  });
 
   try {
-    // ✅ Get current date and time
-    const now = new Date();
-    const currentDateTime = now.toLocaleString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      timeZoneName: 'short'
-    });
-
-    const response = await fetch('https://api.syvaai.com/ask', {
+    const response = await fetch('https://api.syvaai.com/ask-stream', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         question: message,
         top_k: 2,
         session_id: currentSessionId,
-        current_datetime: currentDateTime  // ✅ Add current date/time
+        current_datetime: currentDateTime
       })
     });
 
-    clearTimeout(slowTimer);
-    slowSpinner.style.display = 'none';
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let fullResponse = '';
 
-    const data = await response.json();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
 
-    if (data.session_id) {
-      currentSessionId = data.session_id;
-    }
+      const chunk = decoder.decode(value);
+      const lines = chunk.split('\n');
 
-    const aiMessage = data.answer ?? data.response ?? `<div class="error-alert">
-  <p class="alert-content">
-    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
-      stroke-linecap="round" stroke-linejoin="round" height="28" width="28"
-      class="icon-lg" xmlns="http://www.w3.org/2000/svg">
-      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
-      <path d="M12 9v4"></path>
-      <path d="M12 17h.01"></path>
-    </svg>
-    <small><small>API Error<hr>
-    A error occured. (Error code 5002)<hr>
-    <a href="https://syvaai.com/docs/error5002/"><u>Click here</u></a>
-    for a explanation for this error.</small></small>
-  </p></div>`;
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          try {
+            const data = JSON.parse(line.slice(6));
 
-    // Ensure loader shows at least 1 second
-    const elapsed = Date.now() - startTime;
-    const delay = Math.max(0, 1000 - elapsed);
-
-    setTimeout(() => {
-      loaderDiv.remove();
-      appendMessage("AI", aiMessage);
-      saveMessageToFirebase(message, aiMessage);
-    }, delay);
-
-    if (!activeChatId || !chatSessions[activeChatId]) {
-      activeChatId = 'chat_' + Date.now();
-      chatSessions[activeChatId] = {
-        id: activeChatId,
-        title: message.substring(0, 30) || "New Chat",
-        messages: [],
-        sessionId: currentSessionId,
-        created: Date.now(),
-        lastUpdated: Date.now()
-      };
+            if (data.type === 'session_id') {
+              currentSessionId = data.session_id;
+            } 
+            else if (data.type === 'status') {
+              // Show status like "Searching the web..."
+              aiMessageDiv.innerHTML = `<em style="color: #888;">${data.message}</em><span class="streaming-cursor"></span>`;
+            } 
+            else if (data.type === 'content') {
+              // Remove status message if present
+              if (aiMessageDiv.innerHTML.includes('<em')) {
+                aiMessageDiv.innerHTML = '';
+              }
+              
+              fullResponse += data.content;
+              
+              // Render markdown progressively
+              const rendered = marked.parse(fullResponse, { breaks: true, gfm: true });
+              aiMessageDiv.innerHTML = DOMPurify.sanitize(rendered) + '<span class="streaming-cursor"></span>';
+              
+              // Auto-scroll
+              chat.scrollTop = chat.scrollHeight;
+            } 
+            else if (data.type === 'done') {
+              // Remove cursor
+              aiMessageDiv.innerHTML = aiMessageDiv.innerHTML.replace('<span class="streaming-cursor"></span>', '');
+              
+              // Save to Firebase
+              saveMessageToFirebase(message, fullResponse);
+            } 
+            else if (data.type === 'error') {
+              aiMessageDiv.innerHTML = `<div class="error-alert"><p>${data.message}</p></div>`;
+            }
+          } catch (e) {
+            console.error('Parse error:', e);
+          }
+        }
+      }
     }
 
   } catch (error) {
-    console.error("API Error:", error);
-
-    clearTimeout(slowTimer);
-    slowSpinner.style.display = 'none';
-
-    const elapsed = Date.now() - startTime;
-    const delay = Math.max(0, 1000 - elapsed);
-
-    setTimeout(() => {
-      loaderDiv.innerHTML = `<div class="error-alert">
-    <p class="alert-content">
-      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
-        stroke-linecap="round" stroke-linejoin="round" height="28" width="28"
-        class="icon-lg" xmlns="http://www.w3.org/2000/svg">
-        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
-        <path d="M12 9v4"></path>
-        <path d="M12 17h.01"></path>
-      </svg>
-      <small><small>API Error<hr>
-      A error occured. (Error code 5001)<hr>
-      <a href="https://syvaai.com/docs/error5001/"><u>Click here</u></a>
-      for a explanation for this error.</small></small>
-    </p></div>`;
-      chat.scrollTop = chat.scrollHeight;
-    }, delay);
+    console.error("Streaming error:", error);
+    aiMessageDiv.innerHTML = `<div class="error-alert"><p>Connection error</p></div>`;
   }
 }
 
