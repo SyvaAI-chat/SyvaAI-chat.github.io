@@ -2588,7 +2588,7 @@ async function sendMessage(message) {
         const hasClosedPopup = localStorage.getItem('popupClosed');
         const popup = document.getElementById('popup');
 
-        // Only show the popup if it hasn't been closed before
+        // Only show the popup if it has not been closed before
         if (!hasClosedPopup) {
           setTimeout(function () {
             popup.style.display = 'block'; // Make it block so it occupies space
