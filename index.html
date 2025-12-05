@@ -2325,70 +2325,126 @@ textarea.addEventListener('change', () => {
 
       
 
-      async function sendMessage(message) {
-        appendMessage("User", message);
+async function sendMessage(message) {
+  appendMessage("User", message);
 
-        const chat = document.getElementById('chat');
+  const chat = document.getElementById('chat');
 
-        // Create AI message with main loader
-        const loaderDiv = document.createElement('div');
-        loaderDiv.classList.add('message', 'message-ai');
-        loaderDiv.innerHTML = `<!-- From Uiverse.io by Fernando-sv --> 
+  // Create AI message with main loader
+  const loaderDiv = document.createElement('div');
+  loaderDiv.classList.add('message', 'message-ai');
+  loaderDiv.innerHTML = `<!-- From Uiverse.io by Fernando-sv --> 
 <div class="loader"></div>`;
-        chat.appendChild(loaderDiv);
-        chat.scrollTop = chat.scrollHeight;
+  chat.appendChild(loaderDiv);
+  chat.scrollTop = chat.scrollHeight;
 
-        // Create the second (slow) spinner — hidden at first
-        const slowSpinner = document.createElement('div');
-        slowSpinner.classList.add('slow-spinner');
-        slowSpinner.innerHTML = `<br><img src="/logos/logo/time-svgrepo-com.png" height="20px" width="20px">`;
-        slowSpinner.style.display = "none"; // start hidden
-        loaderDiv.appendChild(slowSpinner);
+  // Create the second (slow) spinner — hidden at first
+  const slowSpinner = document.createElement('div');
+  slowSpinner.classList.add('slow-spinner');
+  slowSpinner.innerHTML = `<br><img src="/logos/logo/time-svgrepo-com.png" height="20px" width="20px">`;
+  slowSpinner.style.display = "none";
+  loaderDiv.appendChild(slowSpinner);
 
-        // Create the third (very slow) spinner — hidden at first
-        const veryslowSpinner = document.createElement('div');
-        veryslowSpinner.classList.add('veryslow-spinner');
-        veryslowSpinner.innerHTML = `<img src="/logos/logo/warning.png" height="20px" width="40px">`;
-        veryslowSpinner.style.display = "none"; // start hidden
-        loaderDiv.appendChild(veryslowSpinner);
+  // Create the third (very slow) spinner — hidden at first
+  const veryslowSpinner = document.createElement('div');
+  veryslowSpinner.classList.add('veryslow-spinner');
+  veryslowSpinner.innerHTML = `<img src="/logos/logo/warning.png" height="20px" width="40px">`;
+  veryslowSpinner.style.display = "none";
+  loaderDiv.appendChild(veryslowSpinner);
 
+  const startTime = Date.now();
 
-        const startTime = Date.now();
+  // Start timers for slow spinners
+  const slowTimer = setTimeout(() => {
+    slowSpinner.style.display = 'block';
+  }, 20000);
 
-        // Start 10s timer for the slow spinner
-        const slowTimer = setTimeout(() => {
-          slowSpinner.style.display = 'block';
-        }, 20000); // 20 seconds
+  const veryslowTimer = setTimeout(() => {
+    veryslowSpinner.style.display = 'block';
+  }, 50000);
 
-        const veryslowTimer = setTimeout(() => {
-          veryslowSpinner.style.display = 'block';
-        }, 50000); // 50 seconds
+  try {
+    // ✅ Get current date and time
+    const now = new Date();
+    const currentDateTime = now.toLocaleString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZoneName: 'short'
+    });
 
-        try {
-          const response = await fetch('https://api.syvaai.com/ask', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              question: message,
-              top_k: 2,
-              session_id: currentSessionId  // ← ADDED: Send session ID
-            })
-          });
+    const response = await fetch('https://api.syvaai.com/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        question: message,
+        top_k: 2,
+        session_id: currentSessionId,
+        current_datetime: currentDateTime  // ✅ Add current date/time
+      })
+    });
 
-          clearTimeout(slowTimer); // stop showing slow spinner if done
-          slowSpinner.style.display = 'none';
+    clearTimeout(slowTimer);
+    slowSpinner.style.display = 'none';
 
-          // clearTimeout(veryslowTimer); // stop showing slow spinner if done
-          // veryslowSpinner.style.display = 'none';
+    const data = await response.json();
 
-          const data = await response.json();
+    if (data.session_id) {
+      currentSessionId = data.session_id;
+    }
 
-          // ← ADDED: Save the session ID for next message
-          if (data.session_id) {
-            currentSessionId = data.session_id;
-          }
+    const aiMessage = data.answer ?? data.response ?? `<div class="error-alert">
+  <p class="alert-content">
+    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+      stroke-linecap="round" stroke-linejoin="round" height="28" width="28"
+      class="icon-lg" xmlns="http://www.w3.org/2000/svg">
+      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+      <path d="M12 9v4"></path>
+      <path d="M12 17h.01"></path>
+    </svg>
+    <small><small>API Error<hr>
+    A error occured. (Error code 5002)<hr>
+    <a href="https://syvaai.com/docs/error5002/"><u>Click here</u></a>
+    for a explanation for this error.</small></small>
+  </p></div>`;
 
-          const aiMessage = data.answer ?? data.response ?? `<div class="error-alert">
+    // Ensure loader shows at least 1 second
+    const elapsed = Date.now() - startTime;
+    const delay = Math.max(0, 1000 - elapsed);
+
+    setTimeout(() => {
+      loaderDiv.remove();
+      appendMessage("AI", aiMessage);
+      saveMessageToFirebase(message, aiMessage);
+    }, delay);
+
+    if (!activeChatId || !chatSessions[activeChatId]) {
+      activeChatId = 'chat_' + Date.now();
+      chatSessions[activeChatId] = {
+        id: activeChatId,
+        title: message.substring(0, 30) || "New Chat",
+        messages: [],
+        sessionId: currentSessionId,
+        created: Date.now(),
+        lastUpdated: Date.now()
+      };
+    }
+
+  } catch (error) {
+    console.error("API Error:", error);
+
+    clearTimeout(slowTimer);
+    slowSpinner.style.display = 'none';
+
+    const elapsed = Date.now() - startTime;
+    const delay = Math.max(0, 1000 - elapsed);
+
+    setTimeout(() => {
+      loaderDiv.innerHTML = `<div class="error-alert">
     <p class="alert-content">
       <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
         stroke-linecap="round" stroke-linejoin="round" height="28" width="28"
@@ -2398,67 +2454,14 @@ textarea.addEventListener('change', () => {
         <path d="M12 17h.01"></path>
       </svg>
       <small><small>API Error<hr>
-      A error occured. (Error code 5002)<hr>
-      <a href="https://syvaai.com/docs/error5002/"><u>Click here</u></a>
+      A error occured. (Error code 5001)<hr>
+      <a href="https://syvaai.com/docs/error5001/"><u>Click here</u></a>
       for a explanation for this error.</small></small>
     </p></div>`;
-
-          // Ensure loader shows at least 1 second
-          const elapsed = Date.now() - startTime;
-          const delay = Math.max(0, 1000 - elapsed);
-
-          setTimeout(() => {
-            // Remove the loader div
-            loaderDiv.remove();
-
-            // Use appendMessage to properly format markdown
-            appendMessage("AI", aiMessage);
-
-            // Save to Firebase
-            saveMessageToFirebase(message, aiMessage);
-          }, delay);
-
-          if (!activeChatId || !chatSessions[activeChatId]) {
-            activeChatId = 'chat_' + Date.now();
-            chatSessions[activeChatId] = {
-              id: activeChatId,
-              title: userMsg.substring(0, 30) || "New Chat",
-              messages: [],
-              sessionId: currentSessionId,
-              created: Date.now(),
-              lastUpdated: Date.now()
-            };
-          }
-
-
-        } catch (error) {
-          console.error("API Error:", error);
-
-          clearTimeout(slowTimer);
-          slowSpinner.style.display = 'none';
-
-          const elapsed = Date.now() - startTime;
-          const delay = Math.max(0, 1000 - elapsed);
-
-          setTimeout(() => {
-            loaderDiv.innerHTML = `<div class="error-alert">
-      <p class="alert-content">
-        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
-          stroke-linecap="round" stroke-linejoin="round" height="28" width="28"
-          class="icon-lg" xmlns="http://www.w3.org/2000/svg">
-          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
-          <path d="M12 9v4"></path>
-          <path d="M12 17h.01"></path>
-        </svg>
-        <small><small>API Error<hr>
-        A error occured. (Error code 5001)<hr>
-        <a href="https://syvaai.com/docs/error5001/"><u>Click here</u></a>
-        for a explanation for this error.</small></small>
-      </p></div>`;
-            chat.scrollTop = chat.scrollHeight;
-          }, delay);
-        }
-      }
+      chat.scrollTop = chat.scrollHeight;
+    }, delay);
+  }
+}
 
 
       function changeContent2() {
