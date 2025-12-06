@@ -2463,40 +2463,6 @@ async function sendMessage(message) {
   }
 }
 
-const response = await fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-});
-
-if (!response.ok || !response.body) {
-    throw new Error("Stream failed to start.");
-}
-
-const reader = response.body.getReader();
-const decoder = new TextDecoder();
-
-let fullText = "";
-
-while (true) {
-    const { value, done } = await reader.read();
-    if (done) break;
-
-    const chunk = decoder.decode(value, { stream: true });
-
-    // Append new partial content
-    fullText += chunk;
-
-    // Convert markdown → HTML
-    const rendered = marked.parse(fullText);
-    const safeHTML = DOMPurify.sanitize(rendered);
-
-    aiMessageDiv.innerHTML = safeHTML + '<span class="streaming-cursor"></span>';
-
-    chat.scrollTop = chat.scrollHeight;
-}
-
-
 
       function changeContent2() {
         alert("Coming soon!");
@@ -2622,7 +2588,7 @@ while (true) {
         const hasClosedPopup = localStorage.getItem('popupClosed');
         const popup = document.getElementById('popup');
 
-        // Only show the popup if it has not been closed before
+        // Only show the popup if it hasn't been closed before
         if (!hasClosedPopup) {
           setTimeout(function () {
             popup.style.display = 'block'; // Make it block so it occupies space
