@@ -269,7 +269,14 @@
     }
 
 .message {
-  align-self: stretch; /* Take full width available */
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  margin: 8px 0;
+  display: block;
+  clear: both;
+  float: none !important; /* Override the float */
+  text-align: left;
 }
 
 
@@ -371,13 +378,15 @@
 
 
     .message-user {
-    /* background-color: #3b82f6; */
+    background-color: #2d2d2e;
       /* background-color: #3b82f6; */
+      
   color: white;
       float: right;
       text-align: left;
       border-bottom-right-radius: 0;
       font-size: 15px;
+      align-self: flex-end; 
     }
 
     .message-ai {
