@@ -2037,6 +2037,7 @@
 
 
 .greeting-message {
+  align-items: center;
   text-align: center;
 }
 
@@ -2663,6 +2664,7 @@ function showGreeting() {
   // Determine greeting based on time
   let greeting;
   let emoji;
+  let bottomtext;
   
   if (hour >= 5 && hour < 12) {
     greeting = "Good morning!";
@@ -2695,7 +2697,7 @@ function showGreeting() {
   greetingDiv.id = 'greeting-message';
   
   greetingDiv.innerHTML = `
-    <h2>${greeting}</h2>
+    <h1>${greeting}</h1>
     <p>${bottomtext}</p>
   `;
   
