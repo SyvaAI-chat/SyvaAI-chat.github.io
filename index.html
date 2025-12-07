@@ -2462,7 +2462,7 @@ async function sendMessage(message) {
   }
 }
 
-// ✅ ADD THIS NEW FUNCTION - Streaming text effect
+// ✅ SMART STREAMING - Adapts speed based on response length
 function streamText(element, text, onComplete) {
   // Parse markdown first
   let rendered = marked.parse(text, {
@@ -2481,6 +2481,20 @@ function streamText(element, text, onComplete) {
 
   // Split into chunks (by words for smoother effect)
   const words = cleanHTML.split(/(<[^>]+>|\s+)/);
+  const totalWords = words.length;
+  
+  // ✅ ADAPTIVE SPEED CALCULATION
+  let speed;
+  if (totalWords < 50) {
+    speed = 30; // Short response: slow and readable (50ms per word)
+  } else if (totalWords < 200) {
+    speed = 15; // Medium response: moderate speed (30ms)
+  } else if (totalWords < 500) {
+    speed = 10; // Long response: faster (15ms)
+  } else {
+    speed = 1; // Very long response: very fast (8ms)
+  }
+
   let currentIndex = 0;
 
   // Add cursor
@@ -2511,7 +2525,7 @@ function streamText(element, text, onComplete) {
       // Call completion callback
       if (onComplete) onComplete();
     }
-  }, 10); // ✅ Adjust speed here (30ms = fast, 100ms = slow)
+  }, speed);
 }
 
 
