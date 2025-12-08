@@ -46,7 +46,7 @@
 
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Libre Baskerville', serif;
       background-color: #0d0d0d;
       color: white;
     }
@@ -2063,9 +2063,11 @@
   flex-direction: column;
   align-items: center;
   text-align: center !important;
-  margin: 0 auto;
-  max-width: 600px;
+   margin: 20px auto; /* ✅ Changed to auto for centering */
+  max-width: calc(100% - 40px); /* ✅ Prevents overflow */
   align-self: center; /* Override the stretch */
+  overflow-x: hidden; /* ✅ Prevents horizontal scroll */
+  box-sizing: border-box; /* ✅ Includes padding in width calculation */
 }
 
 
