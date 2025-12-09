@@ -2701,27 +2701,27 @@ function showGreeting() {
   if (hour >= 5 && hour < 12) {
     greeting = "Good morning!";
     bottomtext = "What should we talk about?";
-    emoji = "🌅";
+    emoji = `<img src="/logos/logo/daytimes/sunrise-svgrepo-com.png" height="40px" width="40px">`;
   } else if (hour >= 12 && hour < 17) {
     greeting = "Good afternoon";
     bottomtext = "How are you doing today?";
-    emoji = "☀️";
+    emoji = `<img src="logos/logo/daytimes/sun-svgrepo-com.png" height="40px" width="40px">`;
   } else if (hour >= 17 && hour < 21) {
     greeting = "Good evening!";
     bottomtext = "What will we dive into this hour?";
-    emoji = "🌆";
+    emoji = `<img src="logos/logo/daytimes/sunrise-svgrepo-com.png" height="40px" width="40px">`;
   } else if (hour >= 1 && hour < 3) {
     greeting = "Go to bed";
-    bottomtext = "like actually go to bed";
-    emoji = "🌆";
+    bottomtext = "Seriously";
+    emoji = `<img src="logos/logo/daytimes/moon-sleep-svgrepo-com.png" height="40px" width="40px">`;
   } else if (hour >= 3 && hour < 5) {
     greeting = "It's a bit early, don't you think?";
     bottomtext = "What should we talk about?";
-    emoji = "🌆";
+    emoji = `<img src="logos/logo/daytimes/moon-sleep-svgrepo-com.png" height="40px" width="40px">`;
   } else {
     greeting = "Hello, night owl.";
     bottomtext = "Late night convo?";
-    emoji = "🌙";
+    emoji = `<img src="logos/logo/daytimes/moon-svgrepo-com.png" height="40px" width="40px">`;
   }
   
   const greetingDiv = document.createElement('div');
@@ -2729,7 +2729,7 @@ function showGreeting() {
   greetingDiv.id = 'greeting-message';
   
   greetingDiv.innerHTML = `
-    <h1>${greeting}</h1>
+    <h1>${emoji}${greeting}</h1>
     <p>${bottomtext}</p>
   `;
   
