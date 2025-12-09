@@ -1618,11 +1618,13 @@ body.dark-mode .greeting-message {
 .chain-of-thought {
   font-size: 13px;
   font-style: italic;
-  color: #a0a0a0;
-  margin-left: 5px;
-  margin-bottom: 8px;
-  white-space: pre-wrap; /* ensures multi-line text stays formatted */
+  color: #888;        /* gray color for thoughts */
+  margin-left: 10px;   /* indented slightly */
+  margin-bottom: 5px;
+  white-space: pre-wrap; /* preserves line breaks */
+  clear: both;          /* ensures it doesn't float beside messages */
 }
+
 
   </style>
 
@@ -1909,7 +1911,10 @@ function appendMessage(sender, message, chainOfThought = '') {
   // CHAIN OF THOUGHT (preserve line breaks)
   if (chainOfThought && (sender === 'AI' || sender === 'Assistant')) {
     const cotDiv = document.createElement('div');
-    cotDiv.classList.add('message', 'message-ai', 'chain-of-thought');
+    cotDiv.classList.add('chain-of-thought');
+    cotDiv.style.whiteSpace = 'pre-wrap';
+    cotDiv.textContent = chainOfThought;
+
 
     // Preserve line breaks
     cotDiv.style.whiteSpace = 'pre-wrap';
