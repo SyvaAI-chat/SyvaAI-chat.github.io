@@ -2491,10 +2491,6 @@ function removeGreeting() {
     });
   }
 
-        // Load messages from Firestore memory
-        chat.messages.forEach(msg => {
-          appendMessage(msg.sender, msg.content);
-        });
 
         // Set active session
         activeChatId = chatId;
