@@ -1864,6 +1864,73 @@ textarea.addEventListener('change', () => {
       }
     </script>
 
+    <script>
+      // ✅ Show greeting message
+// ✅ Show greeting message with dynamic time-based greeting
+function showGreeting() {
+  const chat = document.getElementById('chat');
+  
+  // Get current hour
+  const hour = new Date().getHours();
+  
+  // Determine greeting based on time
+  let greeting;
+  let emoji;
+  let bottomtext;
+  
+  if (hour >= 5 && hour < 12) {
+    greeting = "Good morning!";
+    bottomtext = "What should we talk about?";
+    emoji = `<img src="/logos/logo/daytimes/sunrise-svgrepo-com.png" height="40px" width="40px">`;
+  } else if (hour >= 12 && hour < 17) {
+    greeting = "Good afternoon";
+    bottomtext = "How are you doing today?";
+    emoji = `<img src="logos/logo/daytimes/sun-svgrepo-com.png" height="80px" width="80px">`;
+  } else if (hour >= 17 && hour < 21) {
+    greeting = "Good evening!";
+    bottomtext = "What will we dive into this hour?";
+    emoji = `<img src="logos/logo/daytimes/sunrise-svgrepo-com.png" height="80px" width="80px">`;
+  } else if (hour >= 1 && hour < 3) {
+    greeting = "Go to bed";
+    bottomtext = "Seriously";
+    emoji = `<img src="logos/logo/daytimes/moon-sleep-svgrepo-com.png" height="80px" width="80px">`;
+  } else if (hour >= 3 && hour < 5) {
+    greeting = "It's a bit early, don't you think?";
+    bottomtext = "What should we talk about?";
+    emoji = `<img src="logos/logo/daytimes/moon-sleep-svgrepo-com.png" height="80px" width="80px">`;
+  } else {
+    greeting = "Hello, night owl.";
+    bottomtext = "Late night convo?";
+    emoji = `<img src="logos/logo/daytimes/moon-svgrepo-com.png" height="80px" width="80px">`;
+  }
+  
+  const greetingDiv = document.createElement('div');
+  greetingDiv.classList.add('message', 'message-ai', 'greeting-message');
+  greetingDiv.id = 'greeting-message';
+  
+  greetingDiv.innerHTML = `
+    <h1>${emoji}${greeting}</h1>
+    <p>${bottomtext}</p>
+  `;
+  
+  chat.appendChild(greetingDiv);
+}
+
+// ✅ Remove greeting when first message is sent
+function removeGreeting() {
+  const greeting = document.getElementById('greeting-message');
+  if (greeting) {
+    greeting.style.opacity = '0';
+    greeting.style.transform = 'translateY(-10px)';
+    setTimeout(() => greeting.remove(), 300);
+  }
+}
+
+
+
+    </script>
+
+
 
 
     <script>
@@ -2182,7 +2249,7 @@ function streamText(element, text, onComplete) {
         currentSessionId = null;
         document.getElementById('chat').innerHTML = '';
 
-        showGreeting();
+        showGreeting()
 
         // 🟡 Only save AFTER first message is sent
         renderChatList();
@@ -2215,7 +2282,7 @@ function streamText(element, text, onComplete) {
           });
         });
       }
-
+showGreeting();
     </script>
     <!-- Popup reminder visibility persistence -->
     <script>
@@ -2237,72 +2304,6 @@ function streamText(element, text, onComplete) {
 
       // Reuse your existing sendMessage() and appendMessage() functions
     </script>
-    <script>
-      // ✅ Show greeting message
-// ✅ Show greeting message with dynamic time-based greeting
-function showGreeting() {
-  const chat = document.getElementById('chat');
-  
-  // Get current hour
-  const hour = new Date().getHours();
-  
-  // Determine greeting based on time
-  let greeting;
-  let emoji;
-  let bottomtext;
-  
-  if (hour >= 5 && hour < 12) {
-    greeting = "Good morning!";
-    bottomtext = "What should we talk about?";
-    emoji = `<img src="/logos/logo/daytimes/sunrise-svgrepo-com.png" height="40px" width="40px">`;
-  } else if (hour >= 12 && hour < 17) {
-    greeting = "Good afternoon";
-    bottomtext = "How are you doing today?";
-    emoji = `<img src="logos/logo/daytimes/sun-svgrepo-com.png" height="80px" width="80px">`;
-  } else if (hour >= 17 && hour < 21) {
-    greeting = "Good evening!";
-    bottomtext = "What will we dive into this hour?";
-    emoji = `<img src="logos/logo/daytimes/sunrise-svgrepo-com.png" height="80px" width="80px">`;
-  } else if (hour >= 1 && hour < 3) {
-    greeting = "Go to bed";
-    bottomtext = "Seriously";
-    emoji = `<img src="logos/logo/daytimes/moon-sleep-svgrepo-com.png" height="80px" width="80px">`;
-  } else if (hour >= 3 && hour < 5) {
-    greeting = "It's a bit early, don't you think?";
-    bottomtext = "What should we talk about?";
-    emoji = `<img src="logos/logo/daytimes/moon-sleep-svgrepo-com.png" height="80px" width="80px">`;
-  } else {
-    greeting = "Hello, night owl.";
-    bottomtext = "Late night convo?";
-    emoji = `<img src="logos/logo/daytimes/moon-svgrepo-com.png" height="80px" width="80px">`;
-  }
-  
-  const greetingDiv = document.createElement('div');
-  greetingDiv.classList.add('message', 'message-ai', 'greeting-message');
-  greetingDiv.id = 'greeting-message';
-  
-  greetingDiv.innerHTML = `
-    <h1>${emoji}${greeting}</h1>
-    <p>${bottomtext}</p>
-  `;
-  
-  chat.appendChild(greetingDiv);
-}
-
-// ✅ Remove greeting when first message is sent
-function removeGreeting() {
-  const greeting = document.getElementById('greeting-message');
-  if (greeting) {
-    greeting.style.opacity = '0';
-    greeting.style.transform = 'translateY(-10px)';
-    setTimeout(() => greeting.remove(), 300);
-  }
-}
-
-
-
-    </script>
-
     <script>
       function openNav() {
         document.getElementById("mySidenav").style.width = "300px";
@@ -2571,7 +2572,7 @@ function loadChatFromList(chatId) {
           lastUpdated: Date.now()
         };
 
-        showGreeting();
+        
 
         activeChatId = chatId;
         currentSessionId = null;
