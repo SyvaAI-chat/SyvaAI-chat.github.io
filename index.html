@@ -1997,6 +1997,8 @@ async function sendMessage(message) {
       currentSessionId = data.session_id;
     }
 
+    const chainOfThought = data.chain_of_thought || '';
+
     const aiMessage = data.answer ?? data.response ?? `<div class="error-alert">
   <p class="alert-content">
     <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
@@ -2027,8 +2029,15 @@ async function sendMessage(message) {
 
       // ✅ STREAMING EFFECT - word by word
       streamText(aiMessageDiv, aiMessage, () => {
+
+          if (chainOfThought) {
+    const cotDiv = document.createElement('div');
+    cotDiv.classList.add('chain-of-thought');
+    cotDiv.textContent = chainOfThought;
+    chat.appendChild(cotDiv);
+          }
         // Save to Firebase after streaming completes
-        saveMessageToFirebase(message, aiMessage);
+        saveMessageToFirebase(message, aiMessage, chainOfThought);
       });
 
     }, delay);
@@ -2477,72 +2486,76 @@ function removeGreeting() {
         container.innerHTML = html;
       }
 
-      function loadChatFromList(chatId) {
-        const chat = chatSessions[chatId];
-        if (!chat) return;
+function loadChatFromList(chatId) {
+  const chat = chatSessions[chatId];
+  if (!chat) return;
 
-        // Clear current chat messages
-        document.getElementById('chat').innerHTML = '';
+  // Clear current chat messages
+  document.getElementById('chat').innerHTML = '';
 
-          // ✅ Show greeting only if chat is empty
+  // ✅ Show greeting only if chat is empty
   if (!chat.messages || chat.messages.length === 0) {
     showGreeting();
   } else {
-    // Load messages from Firestore memory
+    // ✅ Load messages with chain-of-thought
     chat.messages.forEach(msg => {
-      appendMessage(msg.sender, msg.content);
+      appendMessage(msg.sender, msg.content, msg.chainOfThought || '');
     });
   }
 
+  // Set active session
+  activeChatId = chatId;
+  currentSessionId = chat.sessionId;
 
-        // Set active session
-        activeChatId = chatId;
-        currentSessionId = chat.sessionId;
+  // Re-render list to highlight the active chat
+  renderChatList();
 
-        // Re-render list to highlight the active chat
-        renderChatList();
-
-        // ✅ Only close sidenav on mobile
-        if (window.innerWidth <= 768) {
-          closeNav();
-        }
-      }
-
+  // ✅ Only close sidenav on mobile
+  if (window.innerWidth <= 768) {
+    closeNav();
+  }
+}
 
 
-      async function saveMessageToFirebase(userMsg, aiMsg) {
-        const user = firebase.auth().currentUser;
-        if (!user || !db) return;
 
-        // Create new chat if none active
-        if (!activeChatId) {
-          activeChatId = 'chat_' + Date.now();
-          chatSessions[activeChatId] = {
-            id: activeChatId,
-            title: userMsg.substring(0, 30),
-            messages: [],
-            sessionId: currentSessionId,
-            created: Date.now(),
-            lastUpdated: Date.now()
-          };
-        }
+      async function saveMessageToFirebase(userMsg, aiMsg, chainOfThought = '') {  // ✅ ADD PARAMETER
+  const user = firebase.auth().currentUser;
+  if (!user || !db) return;
 
-        // Add messages
-        chatSessions[activeChatId].messages.push(
-          { sender: 'User', content: userMsg, timestamp: Date.now() },
-          { sender: 'AI', content: aiMsg, timestamp: Date.now() }
-        );
-        chatSessions[activeChatId].lastUpdated = Date.now();
-        chatSessions[activeChatId].sessionId = currentSessionId;
+  // Create new chat if none active
+  if (!activeChatId) {
+    activeChatId = 'chat_' + Date.now();
+    chatSessions[activeChatId] = {
+      id: activeChatId,
+      title: userMsg.substring(0, 30),
+      messages: [],
+      sessionId: currentSessionId,
+      created: Date.now(),
+      lastUpdated: Date.now()
+    };
+  }
 
-        // Save to Firebase
-        try {
-          await db.collection('users').doc(user.uid).collection('chats').doc(activeChatId).set(chatSessions[activeChatId]);
-          renderChatList(); // Update sidebar
-        } catch (e) {
-          console.error('Error saving:', e);
-        }
-      }
+  // Add messages
+  chatSessions[activeChatId].messages.push(
+    { sender: 'User', content: userMsg, timestamp: Date.now() },
+    { 
+      sender: 'AI', 
+      content: aiMsg, 
+      chainOfThought: chainOfThought,  // ✅ ADD THIS FIELD
+      timestamp: Date.now() 
+    }
+  );
+  chatSessions[activeChatId].lastUpdated = Date.now();
+  chatSessions[activeChatId].sessionId = currentSessionId;
+
+  // Save to Firebase
+  try {
+    await db.collection('users').doc(user.uid).collection('chats').doc(activeChatId).set(chatSessions[activeChatId]);
+    renderChatList(); // Update sidebar
+  } catch (e) {
+    console.error('Error saving:', e);
+  }
+}
     </script>
     <script>
       // ✅ START NEW CHAT — prevents ghost "New Chat" spam
@@ -2564,51 +2577,6 @@ function removeGreeting() {
         // 🟡 Don't save yet — only after first message
         renderChatList();
         console.log("Started new chat (not saved until message):", chatId);
-      }
-
-      // ✅ SAVE MESSAGE — only saves real chats + auto-titles them
-      async function saveMessageToFirebase(userMsg, aiMsg) {
-        const user = firebase.auth().currentUser;
-        if (!user || !db) return;
-
-        // Create chat only when needed
-        if (!activeChatId || !chatSessions[activeChatId]) {
-          activeChatId = 'chat_' + Date.now();
-          chatSessions[activeChatId] = {
-            id: activeChatId,
-            title: userMsg.substring(0, 30) || 'New Chat',
-            messages: [],
-            sessionId: currentSessionId,
-            created: Date.now(),
-            lastUpdated: Date.now()
-          };
-        }
-
-        // Add messages to memory
-        chatSessions[activeChatId].messages.push(
-          { sender: 'User', content: userMsg, timestamp: Date.now() },
-          { sender: 'AI', content: aiMsg, timestamp: Date.now() }
-        );
-        chatSessions[activeChatId].lastUpdated = Date.now();
-        chatSessions[activeChatId].sessionId = currentSessionId;
-
-        // Auto-name from first message if still "New Chat"
-        if (chatSessions[activeChatId].title === 'New Chat' && userMsg.trim()) {
-          const newTitle = userMsg.slice(0, 30) + (userMsg.length > 30 ? '…' : '');
-          chatSessions[activeChatId].title = newTitle;
-        }
-
-        // Save to Firestore only if it has real messages
-        try {
-          if (chatSessions[activeChatId].messages.length > 0) {
-            await db.collection('users').doc(user.uid)
-              .collection('chats').doc(activeChatId)
-              .set(chatSessions[activeChatId]);
-            renderChatList();
-          }
-        } catch (e) {
-          console.error('🔥 Error saving chat:', e);
-        }
       }
 
       // ✅ LOAD CHATS — cleans up empties automatically
