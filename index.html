@@ -2571,6 +2571,8 @@ function loadChatFromList(chatId) {
           lastUpdated: Date.now()
         };
 
+        showGreeting();
+
         activeChatId = chatId;
         currentSessionId = null;
         document.getElementById('chat').innerHTML = '';
