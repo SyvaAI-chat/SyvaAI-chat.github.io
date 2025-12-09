@@ -1615,13 +1615,17 @@ body.dark-mode .greeting-message {
 
 
 
+.message-ai .chain-of-thought,
+.message-user .chain-of-thought,
 .chain-of-thought {
   font-size: 7px !important;
-  font-style: italic !important;      /* gray color for thoughts */
-  margin-left: 10px !important;   /* indented slightly */
+  font-style: italic !important;
+  color: #888 !important; /* Also add a color! */
+  margin-left: 10px !important;
   margin-bottom: 5px !important;
-  white-space: pre-wrap !important; /* preserves line breaks */
-  clear: both !important;          /* ensures it doesn't float beside messages */
+  white-space: pre-wrap !important;
+  clear: both !important;
+  display: block !important;
 }
 
 
