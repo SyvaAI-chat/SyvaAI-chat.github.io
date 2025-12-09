@@ -1626,6 +1626,7 @@ body.dark-mode .greeting-message {
   white-space: pre-wrap !important;
   clear: both !important;
   display: block !important;
+  text-align: left !important;
 }
 
 
@@ -1880,7 +1881,7 @@ textarea.addEventListener('change', () => {
     </script>
 
     <script>
-function appendMessage(sender, message, chainOfThought = '') {
+function appendMessage(sender, chainOfThought, message = '') {
   const chat = document.getElementById('chat');
 
   // MAIN MESSAGE
